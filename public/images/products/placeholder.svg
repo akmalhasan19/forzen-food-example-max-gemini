@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-label="Frozen product placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#155e75" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)" />
+  <g fill="#ccfbf1" opacity="0.35">
+    <circle cx="180" cy="140" r="70" />
+    <circle cx="980" cy="180" r="90" />
+    <circle cx="240" cy="760" r="120" />
+    <circle cx="1030" cy="710" r="80" />
+  </g>
+  <g fill="#ffffff">
+    <text x="600" y="410" text-anchor="middle" font-size="92" font-family="Arial, sans-serif" font-weight="700">
+      FrozenFresh
+    </text>
+    <text x="600" y="500" text-anchor="middle" font-size="42" font-family="Arial, sans-serif" opacity="0.9">
+      Premium Frozen Foods
+    </text>
+  </g>
+</svg>
