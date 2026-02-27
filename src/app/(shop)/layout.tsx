@@ -9,14 +9,12 @@ export default function ShopLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col bg-[#064C4F]">
+    <div className="flex min-h-screen flex-col bg-neutral-50 dark:bg-zinc-900 text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 selection:bg-amber-200 selection:text-black">
       <AppHeader />
       <MobileNav />
       <CartDrawer />
 
-      {/* GClippedContainer — content sheet with curved top overlapping header */}
-      <div className="gromuse-content-sheet flex-1">
-        <div className="gromuse-drag-handle" />
+      <div className="flex-1">
         {children}
       </div>
 

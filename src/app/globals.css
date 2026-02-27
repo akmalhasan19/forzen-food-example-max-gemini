@@ -9,6 +9,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -125,6 +127,15 @@
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+}
+
+/* Hide Scrollbar Utility */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ===== Gromuse Design System Utilities ===== */
@@ -320,6 +331,75 @@
 
 .gromuse-animate-slide-in {
   animation: gromuse-slide-in 0.4s ease-out both;
+}
+
+/* ── Scroll-reveal: slide-up + fade-in (for product cards) ── */
+@keyframes revealSlideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Initial hidden state */
+.reveal-slide-up {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+/* Trigger animation when parent has data-revealed */
+[data-revealed] > .reveal-slide-up,
+[data-revealed] .reveal-slide-up-child {
+  animation: revealSlideUpFade 0.7s ease-out both;
+}
+
+/* Stagger delays for grid children (left → right) */
+[data-revealed] > .reveal-slide-up:nth-child(1),
+[data-revealed] .reveal-slide-up-child:nth-child(1) {
+  animation-delay: 0ms;
+}
+[data-revealed] > .reveal-slide-up:nth-child(2),
+[data-revealed] .reveal-slide-up-child:nth-child(2) {
+  animation-delay: 150ms;
+}
+[data-revealed] > .reveal-slide-up:nth-child(3),
+[data-revealed] .reveal-slide-up-child:nth-child(3) {
+  animation-delay: 300ms;
+}
+[data-revealed] > .reveal-slide-up:nth-child(4),
+[data-revealed] .reveal-slide-up-child:nth-child(4) {
+  animation-delay: 450ms;
+}
+
+/* ── Scroll-reveal: slide-from-right + bounce (for filters) ── */
+@keyframes revealSlideRightBounce {
+  0% {
+    opacity: 0;
+    transform: translateX(160px);
+  }
+  65% {
+    opacity: 1;
+    transform: translateX(-18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Initial hidden state */
+.reveal-slide-right-bounce {
+  opacity: 0;
+  transform: translateX(160px);
+}
+
+/* Trigger animation when parent has data-revealed */
+[data-revealed] .reveal-slide-right-bounce {
+  animation: revealSlideRightBounce 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 /* Primary Button (green filled) */

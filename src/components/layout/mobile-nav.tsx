@@ -27,8 +27,9 @@ export function MobileNav() {
     <Sheet open={mobileNavOpen} onOpenChange={toggleMobileNav}>
       <SheetContent side="left" className="w-72">
         <SheetHeader>
-          <SheetTitle className="text-teal-800">
-            Frozen<span className="text-orange-500">Fresh</span>
+          <SheetTitle className="flex items-center gap-2">
+            <span className="material-icons-round text-2xl text-[#93C572]">eco</span>
+            <span className="font-display font-bold text-xl tracking-tight">Cold<span className="text-[#93C572]">Fresh</span></span>
           </SheetTitle>
         </SheetHeader>
         <Separator className="my-4" />
