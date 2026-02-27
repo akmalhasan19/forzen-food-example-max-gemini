@@ -51,6 +51,7 @@ export interface CartItem {
   name: string;
   imageUrl: string;
   slug: string;
+  brand?: string;
 }
 
 export type ShippingMethod = "standard" | "express" | "priority_cold";

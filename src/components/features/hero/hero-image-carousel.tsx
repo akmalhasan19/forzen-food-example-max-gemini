@@ -13,44 +13,44 @@ interface HeroSlide {
 
 const slides: HeroSlide[] = [
   {
-    brand: "Good Source",
-    name: "Good Source",
-    category: "Chocolates",
-    price: "$08.00",
+    brand: "Seafood",
+    name: "Salmon Premium",
+    category: "Ikan Beku",
+    price: "Rp89.000",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDh1BKtz50dkehemLs3jusfoM5DGVg9ZhU4dbTBzIjHFQ2Z75d1B3QeoQgOR7HheVCOQJV_LBbaU7Qm1QdXr27LteXLyLZ6NFgaWXQF-5tfiYKtjLMaDUlXr681WW8aXQfEZYWecXa8RLztgx6N5G2Lf83nt2sWVY1uxexm8IHWRVjpPFkLWEWgIQDXovMWfYD3CVp3-_6Zb8gQf8-C83sno-7vqUloEWprJQjF0JzugtllKy-F0tTHApGsHYNAEwxFfecZqkIB3rY",
+      "https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=600&h=500&fit=crop&q=80",
   },
   {
-    brand: "Dang",
-    name: "Coconut Chips",
-    category: "Healthy Snacks",
-    price: "$06.00",
+    brand: "Daging",
+    name: "Wagyu Slice A5",
+    category: "Daging Premium",
+    price: "Rp125.000",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAlLaM3j0uXayB951tKyC-3UC3WMSxF3Ib9kb6FAPJkegM-1NcGsWVBbwZqiFBt0rMacfObd-BMdlbeI0C_K1fISc5Zxc7citjMro9mRUppkEt7AiK9zDKPrBQNC7Bl0uadRgzc01TII0c-Vc-mD1499t9iUr9fYD7W_7Ig2_9nBV_-a2MSJDoUC4MAkGnoQSaudfnufxxEEYCUdY_tL8KHFHqWik28w_NEC7rMSrTHMyeKeeAoPXh0YCBOu2QNeADfb8HcC4z6rAQ",
+      "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=600&h=500&fit=crop&q=80",
   },
   {
-    brand: "Perfect Snacks",
-    name: "Dark Chocolate",
-    category: "Energy Bars",
-    price: "$08.00",
+    brand: "Olahan",
+    name: "Dimsum Premium",
+    category: "Makanan Olahan",
+    price: "Rp45.000",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuC_t_joQUF3IM1yPC5HKWy716mTMGqUglUZI6pJdnqadlDboTBxAvPflmw_2pB4OIa-gC8Lkez1GsP12GWCNN-EBo1M7iKqlfJaA1fI-fVkoWayRGMEujBNwAP6Jb3VeO1nrfUfr-HfuOimC6HADn0ML9g4AnpMikD2RNVID549UcMg8eI-krl7KP-bEDqfZFcVCd_THI666qLW5uRQa0VLUvqceXceFz-xS2fLmmwQF7hqQ_VyineocAiEjAEf3g8fF-02e6d0D98",
+      "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=500&fit=crop&q=80",
   },
   {
-    brand: "RXBAR",
-    name: "Blueberry Bar",
-    category: "Protein Bars",
-    price: "$04.50",
+    brand: "Seafood",
+    name: "Udang Vaname",
+    category: "Udang & Kepiting",
+    price: "Rp72.000",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCGsu0_RpM_CREjxdJcPVvAJXQaJ8DL5EE-ifU03c8G70SPUw3bPG3KTe0EUij4RxNU7N_I9Lk8uft71PeMJlF5CtXZ_32LGJ0o0BreJUbk6QzJiY34tST2JbMkkkcOugQxxZkx7c3VCxi0BYSFzkJEju-gMi4cHby3k9npYNvT8BqPVhMpNjLIvKnV5ZuXvM6RaLCNDsxi5MvXIBHotQ6-nFCSBwHESXb75gr3TFJYNSznQ_e7rpFO-nbDGQ3mxMrDqe8F4cLFWKw",
+      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&h=500&fit=crop&q=80",
   },
   {
-    brand: "Power Up",
-    name: "Mega Omega Mix",
-    category: "Trail Mix",
-    price: "$12.00",
+    brand: "Sayuran",
+    name: "Mix Vegetables",
+    category: "Sayuran Beku",
+    price: "Rp35.000",
     image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAtwpBsCxnYLUgtPuKZ1hjtA7tqfXiGaME20NfmLopGrvUXt82HpEeHIFQ4UfIfjaIOO7xTSpEjF4QhxEDnGvYsB6-eS2jjjVzLcBPn2AzKOeTX6CLdYTzahxwvF2Jdx24zG1ABZmT4y7Jtosb1XccyayMoMvWdOpqvB1QzCZdw-arnpU8Mvujvwn3ay0V_arD7dZiwheRnLT1LJwnByU0qWk5q4O_BmpFUth8KkEftgsQn0MZNcc-zF1ag7wEdsMsOjk3fk3DwoYE",
+      "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&h=500&fit=crop&q=80",
   },
 ];
 

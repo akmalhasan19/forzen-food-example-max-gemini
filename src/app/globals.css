@@ -129,13 +129,100 @@
   }
 }
 
+/* ===== Global Scrollbar ===== */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #064C4F transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+/* Tali Pancing / Fishing Line */
+*::-webkit-scrollbar-track {
+  background: transparent;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  background-clip: padding-box;
+  /* Membuat tali tipis hitam di tengah */
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+*::-webkit-scrollbar-track:hover {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Ikan yang dipancing / Hooked Fish */
+*::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  /* SVG Ikan sederhana warna primary */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12c0-3.3-3.1-6-7-6-2.6 0-4.8 1.1-6 2.8C7.5 7.5 5 7 2.3 7 3.5 9 4.3 10.4 4.5 12c-.2 1.6-1 3-2.2 5 2.7 0 5.2-.5 6.7-1.8 1.2 1.7 3.4 2.8 6 2.8 3.9 0 7-2.7 7-6zm-6 1c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z' fill='%23064C4F'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 40px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12c0-3.3-3.1-6-7-6-2.6 0-4.8 1.1-6 2.8C7.5 7.5 5 7 2.3 7 3.5 9 4.3 10.4 4.5 12c-.2 1.6-1 3-2.2 5 2.7 0 5.2-.5 6.7-1.8 1.2 1.7 3.4 2.8 6 2.8 3.9 0 7-2.7 7-6zm-6 1c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z' fill='%2374BD00'/%3E%3C/svg%3E");
+}
+
+/* Alat Pancing di atas (Kail) */
+*::-webkit-scrollbar-button:single-button:vertical:decrement {
+  height: 24px;
+  width: 16px;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 14px;
+  /* Bentuk kail pancing (Hook) */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23064C4F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2v14a4 4 0 0 0 8 0v-2'/%3E%3Cpath d='M18 16l2-2'/%3E%3C/svg%3E");
+}
+
+*::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2374BD00' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2v14a4 4 0 0 0 8 0v-2'/%3E%3Cpath d='M18 16l2-2'/%3E%3C/svg%3E");
+}
+
+/* Ujung bawah dihilangkan agar tampak menyatu dengan air/selesai */
+*::-webkit-scrollbar-button:single-button:vertical:increment {
+  height: 0px;
+  display: none;
+}
+
 /* Hide Scrollbar Utility */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 .hide-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Custom Thin Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
 /* ===== Gromuse Design System Utilities ===== */
@@ -339,6 +426,7 @@
     opacity: 0;
     transform: translateY(60px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -352,25 +440,28 @@
 }
 
 /* Trigger animation when parent has data-revealed */
-[data-revealed] > .reveal-slide-up,
+[data-revealed]>.reveal-slide-up,
 [data-revealed] .reveal-slide-up-child {
   animation: revealSlideUpFade 0.7s ease-out both;
 }
 
 /* Stagger delays for grid children (left → right) */
-[data-revealed] > .reveal-slide-up:nth-child(1),
+[data-revealed]>.reveal-slide-up:nth-child(1),
 [data-revealed] .reveal-slide-up-child:nth-child(1) {
   animation-delay: 0ms;
 }
-[data-revealed] > .reveal-slide-up:nth-child(2),
+
+[data-revealed]>.reveal-slide-up:nth-child(2),
 [data-revealed] .reveal-slide-up-child:nth-child(2) {
   animation-delay: 150ms;
 }
-[data-revealed] > .reveal-slide-up:nth-child(3),
+
+[data-revealed]>.reveal-slide-up:nth-child(3),
 [data-revealed] .reveal-slide-up-child:nth-child(3) {
   animation-delay: 300ms;
 }
-[data-revealed] > .reveal-slide-up:nth-child(4),
+
+[data-revealed]>.reveal-slide-up:nth-child(4),
 [data-revealed] .reveal-slide-up-child:nth-child(4) {
   animation-delay: 450ms;
 }
@@ -381,10 +472,12 @@
     opacity: 0;
     transform: translateX(160px);
   }
+
   65% {
     opacity: 1;
     transform: translateX(-18px);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0);
@@ -400,6 +493,51 @@
 /* Trigger animation when parent has data-revealed */
 [data-revealed] .reveal-slide-right-bounce {
   animation: revealSlideRightBounce 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Per-button staggered reveal (for filter buttons) ── */
+@keyframes revealFilterButton {
+  0% {
+    opacity: 0;
+    transform: scale(0.75);
+    filter: blur(6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}
+
+.reveal-slide-from-right {
+  opacity: 0;
+  transform: scale(0.75);
+  filter: blur(6px);
+}
+
+[data-revealed] .reveal-slide-from-right {
+  animation: revealFilterButton 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+[data-revealed] .reveal-slide-from-right:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+[data-revealed] .reveal-slide-from-right:nth-child(2) {
+  animation-delay: 100ms;
+}
+
+[data-revealed] .reveal-slide-from-right:nth-child(3) {
+  animation-delay: 200ms;
+}
+
+[data-revealed] .reveal-slide-from-right:nth-child(4) {
+  animation-delay: 300ms;
+}
+
+[data-revealed] .reveal-slide-from-right:nth-child(5) {
+  animation-delay: 400ms;
 }
 
 /* Primary Button (green filled) */

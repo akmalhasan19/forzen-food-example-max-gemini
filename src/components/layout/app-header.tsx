@@ -25,7 +25,8 @@ export function AppHeader() {
   }, []);
 
   const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark");
+    const isDark = document.documentElement.classList.toggle("dark");
+    sessionStorage.setItem("theme", isDark ? "dark" : "light");
   };
 
   return (

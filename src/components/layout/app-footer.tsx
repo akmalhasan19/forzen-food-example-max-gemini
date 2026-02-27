@@ -16,8 +16,8 @@ export function AppFooter() {
               </span>
             </div>
             <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
-              Bringing you the healthiest and tastiest snacks from around the
-              globe. Snack without guilt.
+              Menyajikan makanan beku berkualitas premium dengan pengiriman
+              rantai dingin. Segar sampai di rumah.
             </p>
             <div className="flex space-x-4">
               <a
@@ -52,22 +52,22 @@ export function AppFooter() {
                   className="hover:text-[#93C572] transition-colors"
                   href="/products"
                 >
-                  All Snacks
+                  Semua Produk
                 </Link>
               </li>
               <li>
                 <a className="hover:text-[#93C572] transition-colors" href="#">
-                  Chocolates
+                  Daging &amp; Unggas
                 </a>
               </li>
               <li>
                 <a className="hover:text-[#93C572] transition-colors" href="#">
-                  Chips &amp; Crackers
+                  Seafood
                 </a>
               </li>
               <li>
                 <a className="hover:text-[#93C572] transition-colors" href="#">
-                  Nuts &amp; Seeds
+                  Sayuran &amp; Buah
                 </a>
               </li>
             </ul>

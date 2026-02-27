@@ -1,9 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Minus, Plus, Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Price } from "@/components/shared/price";
+import { formatPrice } from "@/lib/utils/currency";
 import { useCartStore } from "@/store/cart-store";
 import type { CartItem } from "@/types/domain";
 
@@ -15,52 +13,49 @@ export function CartItemRow({ item }: CartItemRowProps) {
   const { updateQty, removeItem } = useCartStore();
 
   return (
-    <div className="flex gap-3 rounded-2xl border border-[#d4d4d4] bg-white p-3">
-      <div className="relative h-16 w-16 shrink-0 rounded-xl overflow-hidden bg-[#E1F0ED]">
+    <div className="flex items-center gap-3 group">
+      <div className="w-16 h-16 shrink-0 rounded-full bg-white flex items-center justify-center p-2 relative overflow-hidden">
         <Image
           src={item.imageUrl}
           alt={item.name}
           fill
           sizes="64px"
-          className="object-cover"
+          className="object-contain p-1.5"
         />
-      </div>
-
-      <div className="flex-1 min-w-0 space-y-1">
-        <h4 className="text-sm font-medium text-[#003032] truncate">{item.name}</h4>
-        <Price cents={item.unitPriceCents} size="sm" />
-
-        <div className="flex items-center gap-2">
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-7 w-7"
-            onClick={() => updateQty(item.productId, item.qty - 1)}
+        <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={() => removeItem(item.productId)}
+            className="text-white hover:text-red-400 p-1.5"
           >
-            <Minus className="h-3 w-3" />
-          </Button>
-          <span className="text-sm font-medium w-6 text-center">{item.qty}</span>
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-7 w-7"
-            onClick={() => updateQty(item.productId, item.qty + 1)}
-          >
-            <Plus className="h-3 w-3" />
-          </Button>
+            <span className="material-icons-round text-lg">delete</span>
+          </button>
         </div>
       </div>
 
-      <div className="flex flex-col items-end justify-between shrink-0">
-        <Price cents={item.unitPriceCents * item.qty} size="sm" />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7 text-[#8fb3b5] hover:text-red-500"
-          onClick={() => removeItem(item.productId)}
-        >
-          <Trash2 className="h-3.5 w-3.5" />
-        </Button>
+      <div className="flex-1">
+        <h3 className="font-bold text-white text-base leading-tight line-clamp-2">{item.name}</h3>
+        <p className="text-xs text-gray-300 mt-0.5">{item.brand || 'Fresh Product'}</p>
+        <div className="flex items-center gap-2 mt-1.5">
+          <button
+            onClick={() => updateQty(item.productId, Math.max(0, item.qty - 1))}
+            className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <span className="material-icons-round text-[12px] -mt-[1px]">remove</span>
+          </button>
+          <span className="text-white font-medium text-xs w-3 text-center">{item.qty}</span>
+          <button
+            onClick={() => updateQty(item.productId, item.qty + 1)}
+            className="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center hover:bg-white/30 transition-colors"
+          >
+            <span className="material-icons-round text-[12px] -mt-[1px]">add</span>
+          </button>
+        </div>
+      </div>
+
+      <div className="bg-white px-3 py-1.5 rounded-full self-start mt-1">
+        <span className="font-bold text-black text-xs whitespace-nowrap">
+          {formatPrice(item.unitPriceCents * item.qty).replace(/\,00$/, '')}
+        </span>
       </div>
     </div>
   );
