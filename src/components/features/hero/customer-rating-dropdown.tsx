@@ -42,50 +42,54 @@ export function CustomerRatingDropdown() {
     const listRef = useRef<HTMLDivElement>(null);
     const contentRef = useRef<HTMLDivElement>(null);
     const flipStateRef = useRef<any>(null);
+    const expandedHeightRef = useRef<number>(0);
 
     const { contextSafe } = useGSAP({ scope: containerRef });
 
-    useEffect(() => {
-        // Initial setup: hide list content
-        gsap.set(listRef.current, { height: 0, opacity: 0 });
-    }, []);
-
     const toggleDropdown = contextSafe(() => {
+        // Record height before it collapses
+        if (isExpanded) {
+            expandedHeightRef.current = listRef.current?.offsetHeight || 0;
+        }
+
         // Capture flip state right before DOM change
         flipStateRef.current = Flip.getState(".flip-avatar");
-
-        if (isExpanded) {
-            // Collapse container
-            gsap.to(listRef.current, {
-                height: 0,
-                opacity: 0,
-                duration: 0.4,
-                ease: "power3.inOut",
-            });
-            setIsExpanded(false);
-        } else {
-            // Expand container
-            gsap.to(listRef.current, {
-                height: "auto",
-                opacity: 1,
-                duration: 0.4,
-                ease: "power3.inOut",
-            });
-            setIsExpanded(true);
-        }
+        setIsExpanded(!isExpanded);
     });
 
     useGSAP(() => {
         if (!flipStateRef.current) return;
 
-        // Let FLIP animate the avatars transitioning between the unmounted and mounted DOM nodes
+        // Let FLIP animate the avatars transitioning smoothly
         Flip.from(flipStateRef.current, {
-            duration: 0.4,
-            ease: "power3.inOut",
-            absolute: true, // Takes them out of container flow during transition
-            absoluteOnTop: true, // Elevates above overflow:hidden
+            duration: 0.6,
+            ease: "circ.inOut",
+            absolute: true,
+            absoluteOnTop: true,
             scale: true,
+            zIndex: 50,
+            onEnter: elements => gsap.fromTo(elements, { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4 }),
+            onLeave: elements => gsap.to(elements, { opacity: 0, scale: 0.8, duration: 0.4 }),
         });
+
+        // Trigger container height/opacity tween simultaneously
+        if (isExpanded) {
+            // Animating from 0 to actual auto height computed via React style
+            gsap.from(listRef.current, {
+                height: 0,
+                opacity: 0,
+                duration: 0.6,
+                ease: "circ.inOut",
+            });
+        } else {
+            // Animating back down to 0 from the known previous full height
+            gsap.from(listRef.current, {
+                height: expandedHeightRef.current,
+                opacity: 1,
+                duration: 0.6,
+                ease: "circ.inOut",
+            });
+        }
 
         flipStateRef.current = null;
     }, { dependencies: [isExpanded], scope: containerRef });
@@ -145,54 +149,59 @@ export function CustomerRatingDropdown() {
                         </div>
 
                         {/* Collapsed Mode: Avatars stack and expand_more */}
-                        {!isExpanded && (
-                            <div className="flex items-center absolute right-0 top-0 h-full">
+                        <div className="flex items-center absolute right-0 top-0 h-full">
+                            {!isExpanded && (
                                 <div className="flex -space-x-2">
                                     {REVIEWS.map((review, i) => (
-                                        <img
+                                        <div
                                             key={i}
                                             data-flip-id={`avatar-${i}`}
-                                            src={review.avatar}
-                                            alt={review.name}
-                                            className="flip-avatar w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 object-cover bg-gray-100 flex-shrink-0"
-                                        />
+                                            className="flip-avatar relative z-10 w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 bg-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden"
+                                        >
+                                            <img
+                                                src={review.avatar}
+                                                alt={review.name}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
                                     ))}
-                                    <div
-                                        data-flip-id="avatar-more"
-                                        className="flip-avatar w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 bg-[#3a4f2b] text-white flex items-center justify-center text-[9px] font-bold tracking-tighter flex-shrink-0"
-                                    >
+                                    <div data-flip-id="plus-2k" className="flip-avatar relative z-20 w-6 h-6 rounded-full border-2 border-white dark:border-zinc-900 bg-[#3a4f2b] text-white flex items-center justify-center text-[9px] font-bold tracking-tighter flex-shrink-0">
                                         +2k
                                     </div>
                                 </div>
-                                <div className="w-6 h-6 rounded-full bg-gray-50 hover:bg-gray-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 ml-1.5 flex items-center justify-center shadow-sm border border-gray-200 dark:border-zinc-700 transition-colors flex-shrink-0">
-                                    <span className="material-icons-round text-sm text-gray-600 dark:text-gray-300">
-                                        expand_more
-                                    </span>
-                                </div>
+                            )}
+                            <div className={`w-6 h-6 rounded-full bg-gray-50 hover:bg-gray-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 ml-1.5 flex items-center justify-center shadow-sm border border-gray-200 dark:border-zinc-700 transition-colors flex-shrink-0 ${isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+                                <span className="material-icons-round text-sm text-gray-600 dark:text-gray-300">
+                                    expand_more
+                                </span>
                             </div>
-                        )}
+                        </div>
                     </div>
                 </div>
 
                 {/* List Content */}
-                <div ref={listRef} className="overflow-hidden">
+                <div ref={listRef} className="overflow-hidden" style={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}>
                     <div ref={contentRef} className="py-2 flex flex-col gap-1">
                         {REVIEWS.map((review, i) => (
                             <div
                                 key={i}
                                 className="flex items-center gap-3 p-2 rounded-xl hover:bg-gray-50 dark:hover:bg-zinc-800 transition-colors cursor-pointer group"
                             >
-                                {/* In expanded state, map the same flip IDs to these avatars */}
-                                {isExpanded ? (
-                                    <img
-                                        data-flip-id={`avatar-${i}`}
-                                        src={review.avatar}
-                                        alt={review.name}
-                                        className="flip-avatar w-10 h-10 rounded-full bg-black flex-shrink-0 object-cover"
-                                    />
-                                ) : (
-                                    <div className="w-10 h-10 rounded-full flex-shrink-0" />
-                                )}
+                                <div className="relative w-10 h-10 rounded-full flex-shrink-0 bg-transparent flex items-center justify-center">
+                                    {isExpanded && (
+                                        <div
+                                            data-flip-id={`avatar-${i}`}
+                                            className="flip-avatar w-10 h-10 absolute inset-0 rounded-full flex items-center justify-center overflow-hidden border-2 border-transparent"
+                                        >
+                                            <div className="absolute inset-0 bg-black rounded-full" />
+                                            <img
+                                                src={review.avatar}
+                                                alt={review.name}
+                                                className="w-full h-full object-cover relative z-10"
+                                            />
+                                        </div>
+                                    )}
+                                </div>
                                 <div className="flex-1 min-w-0">
                                     <div className="text-sm font-bold text-gray-900 dark:text-white truncate">
                                         {review.name}

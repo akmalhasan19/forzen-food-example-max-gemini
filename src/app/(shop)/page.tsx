@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { HeroImageCarousel } from "@/components/features/hero/hero-image-carousel";
 import { ScrollRevealGroup } from "@/components/shared/animate-on-scroll";
 import { CustomerRatingDropdown } from "@/components/features/hero/customer-rating-dropdown";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "ColdFresh | Frozen Food Premium",
@@ -81,10 +82,12 @@ export default function HomePage() {
               Diantar dengan rantai dingin.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
-                Belanja Sekarang
-                <span className="material-icons-round">arrow_forward</span>
-              </button>
+              <Link href="/products">
+                <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
+                  Belanja Sekarang
+                  <span className="material-icons-round">arrow_forward</span>
+                </button>
+              </Link>
               <button className="bg-white dark:bg-zinc-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 flex items-center gap-2">
                 <span className="material-icons-round">play_circle</span>
                 Lihat Video
@@ -188,10 +191,7 @@ export default function HomePage() {
                     {product.price}
                   </span>
                   <button
-                    className={`w-12 h-12 rounded-2xl ${product.highlight
-                      ? "bg-[#93C572] text-white hover:bg-green-700 shadow-lg hover:shadow-green-700/50 dark:hover:shadow-none"
-                      : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-[#93C572] hover:text-white hover:shadow-lg"
-                      } flex items-center justify-center transition-all duration-300 transform active:scale-95`}
+                    className="w-12 h-12 rounded-2xl bg-[#93C572] text-white hover:bg-green-700 shadow-lg hover:shadow-green-700/50 dark:hover:shadow-none flex items-center justify-center transition-all duration-300 transform active:scale-95"
                   >
                     <span className="material-icons-round">add</span>
                   </button>

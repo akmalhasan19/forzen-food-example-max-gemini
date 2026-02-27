@@ -65,17 +65,45 @@ export function HeroImageCarousel() {
   const isAnimatingRef = useRef(false);
   const isPausedRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+
+  useEffect(() => {
+    // Cleanup any active GSAP timelines on unmount to prevent setting properties on null refs
+    return () => {
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+      }
+    };
+  }, []);
 
   const animateTransition = useCallback((nextIndex: number) => {
     if (isAnimatingRef.current || isPausedRef.current) return;
+
+    // Ensure all refs are attached before animating
+    if (
+      !imageRef.current ||
+      !priceRef.current ||
+      !textBrandRef.current ||
+      !textNameRef.current ||
+      !textCategoryRef.current
+    ) {
+      return;
+    }
+
     isAnimatingRef.current = true;
 
     const nextSlide = slides[nextIndex];
+
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
+
     const tl = gsap.timeline({
       onComplete: () => {
         isAnimatingRef.current = false;
       },
     });
+    timelineRef.current = tl;
 
     // Phase 1: Slide current content up + fade out
     tl.to(
@@ -208,7 +236,7 @@ export function HeroImageCarousel() {
       <div className="absolute inset-0 bg-pink-100/40 dark:bg-pink-900/20 rounded-[3rem] transform -rotate-2 scale-90 z-0" />
 
       {/* Main card */}
-      <div 
+      <div
         className="relative z-10 bg-white dark:bg-zinc-800 rounded-[2.5rem] shadow-2xl p-8 transform transition hover:scale-[1.01] duration-500 border border-gray-100 dark:border-gray-800 overflow-hidden cursor-pointer"
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
@@ -272,11 +300,10 @@ export function HeroImageCarousel() {
           {slides.map((_, idx) => (
             <span
               key={idx}
-              className={`block h-1.5 rounded-full transition-all duration-500 ${
-                idx === currentIndex
-                  ? "w-6 bg-[#93C572]"
-                  : "w-1.5 bg-gray-300 dark:bg-gray-600"
-              }`}
+              className={`block h-1.5 rounded-full transition-all duration-500 ${idx === currentIndex
+                ? "w-6 bg-[#93C572]"
+                : "w-1.5 bg-gray-300 dark:bg-gray-600"
+                }`}
             />
           ))}
         </div>

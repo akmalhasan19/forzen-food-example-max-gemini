@@ -4,9 +4,9 @@ export function AppFooter() {
   return (
     <footer className="bg-gray-50 dark:bg-black border-t border-gray-200 dark:border-gray-800 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-12">
           {/* Brand */}
-          <div className="col-span-1 md:col-span-1">
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-6">
               <span className="material-icons-round text-3xl text-[#93C572]">
                 eco
@@ -42,7 +42,7 @@ export function AppFooter() {
           </div>
 
           {/* Shop */}
-          <div>
+          <div className="col-span-1">
             <h4 className="font-display font-bold text-lg text-gray-900 dark:text-white mb-6">
               Shop
             </h4>
@@ -74,7 +74,7 @@ export function AppFooter() {
           </div>
 
           {/* Company */}
-          <div>
+          <div className="col-span-1">
             <h4 className="font-display font-bold text-lg text-gray-900 dark:text-white mb-6">
               Company
             </h4>
@@ -103,7 +103,7 @@ export function AppFooter() {
           </div>
 
           {/* Newsletter */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h4 className="font-display font-bold text-lg text-gray-900 dark:text-white mb-6">
               Newsletter
             </h4>

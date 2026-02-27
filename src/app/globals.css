@@ -434,7 +434,8 @@
 }
 
 /* Initial hidden state */
-.reveal-slide-up {
+.reveal-slide-up,
+.reveal-slide-up-child {
   opacity: 0;
   transform: translateY(60px);
 }
@@ -464,6 +465,26 @@
 [data-revealed]>.reveal-slide-up:nth-child(4),
 [data-revealed] .reveal-slide-up-child:nth-child(4) {
   animation-delay: 450ms;
+}
+
+[data-revealed]>.reveal-slide-up:nth-child(5),
+[data-revealed] .reveal-slide-up-child:nth-child(5) {
+  animation-delay: 600ms;
+}
+
+[data-revealed]>.reveal-slide-up:nth-child(6),
+[data-revealed] .reveal-slide-up-child:nth-child(6) {
+  animation-delay: 750ms;
+}
+
+[data-revealed]>.reveal-slide-up:nth-child(7),
+[data-revealed] .reveal-slide-up-child:nth-child(7) {
+  animation-delay: 900ms;
+}
+
+[data-revealed]>.reveal-slide-up:nth-child(8),
+[data-revealed] .reveal-slide-up-child:nth-child(8) {
+  animation-delay: 1050ms;
 }
 
 /* ── Scroll-reveal: slide-from-right + bounce (for filters) ── */
