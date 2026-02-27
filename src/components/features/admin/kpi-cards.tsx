@@ -40,30 +40,30 @@ function computeKpis(): KpiItem[] {
 
   return [
     {
-      title: "Sales (Today)",
+      title: "Penjualan (Hari Ini)",
       value: formatCurrency(salesToday),
-      subtitle: `${ordersToday.length} order(s)`,
+      subtitle: `${ordersToday.length} pesanan`,
       Icon: CalendarDays,
       color: "text-cyan-600 bg-cyan-50",
     },
     {
-      title: "Sales (7d)",
+      title: "Penjualan (7 Hari)",
       value: formatCurrency(sales7d),
-      subtitle: `${orders7d.length} order(s)`,
+      subtitle: `${orders7d.length} pesanan`,
       Icon: CalendarRange,
       color: "text-blue-600 bg-blue-50",
     },
     {
-      title: "Sales (30d)",
+      title: "Penjualan (30 Hari)",
       value: formatCurrency(sales30d),
-      subtitle: `${orders30d.length} order(s)`,
+      subtitle: `${orders30d.length} pesanan`,
       Icon: TrendingUp,
       color: "text-teal-600 bg-teal-50",
     },
     {
-      title: "Avg Order (30d)",
+      title: "Rata-rata Pesanan (30h)",
       value: formatCurrency(avg30d),
-      subtitle: "rolling window",
+      subtitle: "jendela bergulir",
       Icon: Package,
       color: "text-orange-600 bg-orange-50",
     },
@@ -117,11 +117,11 @@ export function KpiCards() {
 
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Top Products (by units sold)</CardTitle>
+          <CardTitle className="text-base">Produk Terlaris (berdasarkan unit terjual)</CardTitle>
         </CardHeader>
         <CardContent>
           {top.length === 0 ? (
-            <p className="text-sm text-slate-500">No sales yet.</p>
+            <p className="text-sm text-slate-500">Belum ada penjualan.</p>
           ) : (
             <div className="space-y-2">
               {top.map((item, index) => (
@@ -129,7 +129,7 @@ export function KpiCards() {
                   <span className="text-slate-700">
                     {index + 1}. {item.name}
                   </span>
-                  <span className="font-semibold text-slate-900">{item.qty} unit(s)</span>
+                  <span className="font-semibold text-slate-900">{item.qty} unit</span>
                 </div>
               ))}
             </div>

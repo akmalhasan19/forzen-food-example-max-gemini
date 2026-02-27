@@ -48,7 +48,7 @@ export function ProductDetailClient({
       <nav className="flex items-center gap-2 text-sm text-slate-500">
         <Link href="/products" className="hover:text-teal-600 flex items-center gap-1">
           <ArrowLeft className="h-3.5 w-3.5" />
-          Products
+          Produk
         </Link>
         {category && (
           <>
@@ -91,7 +91,7 @@ export function ProductDetailClient({
 
           {product.flashSaleEndsAt && (
             <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-lg border border-orange-200">
-              <span className="text-sm font-medium text-orange-700">Sale ends in:</span>
+              <span className="text-sm font-medium text-orange-700">Promo berakhir dalam:</span>
               <CountdownTimer endsAt={product.flashSaleEndsAt} />
             </div>
           )}
@@ -120,10 +120,10 @@ export function ProductDetailClient({
             <Thermometer className="h-5 w-5 text-cyan-600" />
             <div>
               <p className="text-sm font-medium text-cyan-800">
-                Cold-Chain Estimate (Standard Shipping)
+                Estimasi Rantai Dingin (Pengiriman Standar)
               </p>
               <p className="text-xs text-cyan-600">
-                Safe window: ~{meltingMinutes} min | Status:{" "}
+                Jendela aman: ~{meltingMinutes} menit | Status:{" "}
                 <span
                   className={
                     chainStatus.variant === "safe"
@@ -146,14 +146,14 @@ export function ProductDetailClient({
             className="w-full md:w-auto bg-teal-600 hover:bg-teal-700 text-white"
           >
             <ShoppingCart className="h-5 w-5 mr-2" />
-            {product.inventoryAvailable <= 0 ? "Out of Stock" : "Add to Cart"}
+            {product.inventoryAvailable <= 0 ? "Stok Habis" : "Tambah ke Keranjang"}
           </Button>
         </div>
       </div>
 
       {recommendations.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-slate-900">You might also like</h2>
+          <h2 className="text-lg font-semibold text-slate-900">Anda mungkin juga suka</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {recommendations.map((p) => (
               <ProductCard key={p.id} product={p} />

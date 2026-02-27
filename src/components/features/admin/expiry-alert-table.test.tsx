@@ -11,6 +11,6 @@ describe("ExpiryAlertTable", () => {
     expect(rows.length).toBeGreaterThan(1);
 
     const firstDataRow = rows[1];
-    expect(within(firstDataRow).getByText(/Organic Chicken Breast Tenders/i)).toBeInTheDocument();
+    expect(within(firstDataRow).getByText(/Tender Dada Ayam Organik/i)).toBeInTheDocument();
   });
 });

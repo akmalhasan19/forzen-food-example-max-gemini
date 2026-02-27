@@ -12,10 +12,10 @@ import { Button } from "@/components/ui/button";
 import { useAuthStore } from "@/store/auth-store";
 
 const NAV_ITEMS = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/admin/products", label: "Products", icon: Package },
-  { href: "/admin/orders", label: "Orders", icon: ShoppingCart },
-  { href: "/admin/inventory", label: "Inventory", icon: Warehouse },
+  { href: "/admin", label: "Dasbor", icon: LayoutDashboard },
+  { href: "/admin/products", label: "Produk", icon: Package },
+  { href: "/admin/orders", label: "Pesanan", icon: ShoppingCart },
+  { href: "/admin/inventory", label: "Inventaris", icon: Warehouse },
 ];
 
 export default function AdminLayout({
@@ -32,19 +32,18 @@ export default function AdminLayout({
       <div className="flex min-h-screen items-center justify-center bg-slate-50">
         <div className="text-center space-y-4 px-4">
           <ShieldAlert className="h-16 w-16 mx-auto text-red-400" />
-          <h1 className="text-2xl font-bold text-slate-900">Access Denied</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Akses Ditolak</h1>
           <p className="text-slate-500 max-w-sm">
-            You need an admin account to access this area. Sign in as admin from
-            the profile page.
+            Anda memerlukan akun admin untuk mengakses area ini. Masuk sebagai admin dari halaman profil.
           </p>
           <div className="flex gap-2 justify-center">
             <Link href="/profile">
               <Button className="bg-teal-600 hover:bg-teal-700">
-                Go to Profile
+                Ke Profil
               </Button>
             </Link>
             <Link href="/">
-              <Button variant="outline">Back to Shop</Button>
+              <Button variant="outline">Kembali ke Toko</Button>
             </Link>
           </div>
         </div>
@@ -74,7 +73,7 @@ export default function AdminLayout({
           ))}
         </nav>
         <div className="p-3 border-t text-xs text-slate-400">
-          Logged in as {user.fullName}
+          Masuk sebagai {user.fullName}
         </div>
       </aside>
 

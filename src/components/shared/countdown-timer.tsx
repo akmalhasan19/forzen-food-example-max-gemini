@@ -44,7 +44,7 @@ export function CountdownTimer({ endsAt, className = "" }: CountdownTimerProps) 
   if (expired) return null;
 
   return (
-    <div className={`flex items-center gap-1.5 text-orange-600 font-mono font-semibold ${className}`}>
+    <div className={`flex items-center gap-1.5 text-[#FF7006] font-mono font-semibold ${className}`}>
       <Clock className="h-3.5 w-3.5" />
       <span className="text-sm">{timeLeft}</span>
     </div>

@@ -45,7 +45,7 @@ describe("ProductGallery view mode", () => {
 
     expect(screen.getAllByTestId("product-card").length).toBeGreaterThan(0);
 
-    await user.click(screen.getByRole("button", { name: /list view/i }));
+    await user.click(screen.getByRole("button", { name: /tampilan daftar/i }));
     expect(screen.getAllByTestId("product-list-row").length).toBeGreaterThan(0);
 
     await waitFor(() => {

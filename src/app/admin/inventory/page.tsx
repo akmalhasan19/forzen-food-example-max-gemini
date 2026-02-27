@@ -28,9 +28,9 @@ export default function AdminInventoryPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Inventory</h1>
+        <h1 className="text-2xl font-bold text-slate-900">Inventaris</h1>
         <p className="text-sm text-slate-500">
-          {sorted.length} batches &middot; {totalQty} total units
+          {sorted.length} batch &middot; {totalQty} total unit
         </p>
       </div>
 
@@ -39,17 +39,17 @@ export default function AdminInventoryPage() {
         {expired > 0 && (
           <Badge className="bg-red-100 text-red-800 border-0 py-1 px-3 text-sm">
             <AlertTriangle className="h-3.5 w-3.5 mr-1" />
-            {expired} expired
+            {expired} kedaluwarsa
           </Badge>
         )}
         {expiringSoon > 0 && (
           <Badge className="bg-orange-100 text-orange-800 border-0 py-1 px-3 text-sm">
             <Clock className="h-3.5 w-3.5 mr-1" />
-            {expiringSoon} expiring within 7 days
+            {expiringSoon} kedaluwarsa dalam 7 hari
           </Badge>
         )}
         <Badge className="bg-slate-100 text-slate-700 border-0 py-1 px-3 text-sm">
-          {sorted.length} batches total
+          {sorted.length} total batch
         </Badge>
       </div>
 
@@ -60,13 +60,13 @@ export default function AdminInventoryPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b text-left text-slate-500">
-                  <th className="px-4 py-3 font-medium">Product</th>
-                  <th className="px-4 py-3 font-medium">Batch Code</th>
-                  <th className="px-4 py-3 font-medium">Qty</th>
-                  <th className="px-4 py-3 font-medium">Received</th>
-                  <th className="px-4 py-3 font-medium">Expires</th>
-                  <th className="px-4 py-3 font-medium">Temp (°C)</th>
-                  <th className="px-4 py-3 font-medium">Location</th>
+                  <th className="px-4 py-3 font-medium">Produk</th>
+                  <th className="px-4 py-3 font-medium">Kode Batch</th>
+                  <th className="px-4 py-3 font-medium">Jml</th>
+                  <th className="px-4 py-3 font-medium">Diterima</th>
+                  <th className="px-4 py-3 font-medium">Kedaluwarsa</th>
+                  <th className="px-4 py-3 font-medium">Suhu (°C)</th>
+                  <th className="px-4 py-3 font-medium">Lokasi</th>
                   <th className="px-4 py-3 font-medium">Status</th>
                 </tr>
               </thead>
@@ -130,15 +130,15 @@ export default function AdminInventoryPage() {
                       <td className="px-4 py-3">
                         {isExpired ? (
                           <Badge className="bg-red-100 text-red-800 border-0">
-                            Expired
+                            Kedaluwarsa
                           </Badge>
                         ) : isExpiringSoon ? (
                           <Badge className="bg-orange-100 text-orange-800 border-0">
-                            &lt; 7 days
+                            &lt; 7 hari
                           </Badge>
                         ) : isExpiring30d ? (
                           <Badge className="bg-yellow-100 text-yellow-800 border-0">
-                            &lt; 30 days
+                            &lt; 30 hari
                           </Badge>
                         ) : (
                           <Badge className="bg-green-100 text-green-800 border-0">

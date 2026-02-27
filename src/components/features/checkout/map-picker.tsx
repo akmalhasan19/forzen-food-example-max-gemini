@@ -35,7 +35,7 @@ export function MapPicker({ lat, lng, onSelect }: MapPickerProps) {
         className="gap-1"
       >
         <MapPin className="h-4 w-4" />
-        {loading ? "Locating..." : "Use current location"}
+        {loading ? "Mencari lokasi..." : "Gunakan lokasi saat ini"}
       </Button>
       {error ? <p className="text-xs text-red-500">{error}</p> : null}
       <MapPickerInner lat={lat} lng={lng} onSelect={onSelect} />

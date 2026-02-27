@@ -25,15 +25,15 @@ export default function AdminProductsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Products</h1>
+          <h1 className="text-2xl font-bold text-slate-900">Produk</h1>
           <p className="text-sm text-slate-500">
-            {MOCK_PRODUCTS.length} products total
+            {MOCK_PRODUCTS.length} total produk
           </p>
         </div>
         <div className="relative w-full max-w-xs">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
           <Input
-            placeholder="Search products..."
+            placeholder="Cari produk..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="pl-9"
@@ -47,12 +47,12 @@ export default function AdminProductsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b text-left text-slate-500">
-                  <th className="px-4 py-3 font-medium">Product</th>
-                  <th className="px-4 py-3 font-medium">Category</th>
-                  <th className="px-4 py-3 font-medium">Price</th>
-                  <th className="px-4 py-3 font-medium">Weight</th>
-                  <th className="px-4 py-3 font-medium">Stock</th>
-                  <th className="px-4 py-3 font-medium">Temp</th>
+                  <th className="px-4 py-3 font-medium">Produk</th>
+                  <th className="px-4 py-3 font-medium">Kategori</th>
+                  <th className="px-4 py-3 font-medium">Harga</th>
+                  <th className="px-4 py-3 font-medium">Berat</th>
+                  <th className="px-4 py-3 font-medium">Stok</th>
+                  <th className="px-4 py-3 font-medium">Suhu</th>
                   <th className="px-4 py-3 font-medium">Status</th>
                 </tr>
               </thead>
@@ -77,11 +77,11 @@ export default function AdminProductsPage() {
                     <td className="px-4 py-3">
                       {product.inventoryAvailable === 0 ? (
                         <Badge className="bg-red-100 text-red-800 border-0">
-                          Out of Stock
+                          Stok Habis
                         </Badge>
                       ) : product.inventoryAvailable <= 10 ? (
                         <Badge className="bg-orange-100 text-orange-800 border-0">
-                          Low ({product.inventoryAvailable})
+                          Sedikit ({product.inventoryAvailable})
                         </Badge>
                       ) : (
                         <Badge className="bg-green-100 text-green-800 border-0">
@@ -100,11 +100,11 @@ export default function AdminProductsPage() {
                     <td className="px-4 py-3">
                       {product.isActive ? (
                         <Badge className="bg-green-100 text-green-800 border-0">
-                          Active
+                          Aktif
                         </Badge>
                       ) : (
                         <Badge className="bg-slate-100 text-slate-600 border-0">
-                          Inactive
+                          Nonaktif
                         </Badge>
                       )}
                     </td>
@@ -115,7 +115,7 @@ export default function AdminProductsPage() {
           </div>
           {filtered.length === 0 && (
             <p className="text-center text-slate-400 py-8">
-              No products match your search.
+              Tidak ada produk yang sesuai pencarian.
             </p>
           )}
         </CardContent>

@@ -5,6 +5,7 @@ import { useProductsQuery } from "@/hooks/queries/use-products-query";
 import { useInventoryQuery } from "@/hooks/queries/use-inventory-query";
 import { useUiStore } from "@/store/ui-store";
 import { ProductCard } from "./product-card";
+import { ProductCardHome } from "./product-card-home";
 import { ProductListRow } from "./product-list-row";
 import { CatalogToolbar } from "./catalog-toolbar";
 import { CatalogFilters } from "./catalog-filters";
@@ -45,10 +46,14 @@ export function ProductGallery({ initialProducts, categories, mode }: ProductGal
             ))}
           </div>
         ) : viewMode === "grid" ? (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
-            {displayProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+          <div className={mode === "preview" ? "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5" : "grid grid-cols-2 lg:grid-cols-3 gap-4"}>
+            {displayProducts.map((p) =>
+              mode === "preview" ? (
+                <ProductCardHome key={p.id} product={p} />
+              ) : (
+                <ProductCard key={p.id} product={p} />
+              )
+            )}
           </div>
         ) : (
           <div className="space-y-3">

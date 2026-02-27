@@ -19,11 +19,11 @@ import { toast } from "sonner";
 import type { Order, OrderStatus } from "@/types/domain";
 
 const COLUMNS: { status: OrderStatus; label: string; Icon: React.ElementType; color: string }[] = [
-  { status: "pending", label: "Pending", Icon: Clock, color: "bg-yellow-500" },
-  { status: "paid", label: "Paid", Icon: CreditCard, color: "bg-blue-500" },
-  { status: "packed", label: "Packed", Icon: Package, color: "bg-indigo-500" },
-  { status: "shipped", label: "Shipped", Icon: Truck, color: "bg-teal-500" },
-  { status: "delivered", label: "Delivered", Icon: CheckCircle2, color: "bg-green-500" },
+  { status: "pending", label: "Menunggu", Icon: Clock, color: "bg-yellow-500" },
+  { status: "paid", label: "Dibayar", Icon: CreditCard, color: "bg-blue-500" },
+  { status: "packed", label: "Dikemas", Icon: Package, color: "bg-indigo-500" },
+  { status: "shipped", label: "Dikirim", Icon: Truck, color: "bg-teal-500" },
+  { status: "delivered", label: "Terkirim", Icon: CheckCircle2, color: "bg-green-500" },
 ];
 
 const NEXT_STATUS: Record<string, OrderStatus | null> = {
@@ -45,7 +45,7 @@ export function FulfillmentBoard() {
         const next = NEXT_STATUS[o.status];
         if (!next) return o;
         toast.success(
-          `Order #${o.id.slice(0, 8)} moved to ${next}`
+          `Pesanan #${o.id.slice(0, 8)} dipindahkan ke ${next}`
         );
         return { ...o, status: next, updatedAt: new Date().toISOString() };
       })
@@ -55,7 +55,7 @@ export function FulfillmentBoard() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Fulfillment Board</CardTitle>
+        <CardTitle>Papan Pemenuhan Pesanan</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
@@ -75,7 +75,7 @@ export function FulfillmentBoard() {
                 <Separator />
                 {colOrders.length === 0 ? (
                   <p className="text-xs text-slate-400 text-center py-4">
-                    No orders
+                    Tidak ada pesanan
                   </p>
                 ) : (
                   colOrders.map((order) => (
@@ -95,7 +95,7 @@ export function FulfillmentBoard() {
                         {formatCurrency(order.totalCents)}
                       </p>
                       <p className="text-xs text-slate-500">
-                        {order.items.length} item(s) &middot;{" "}
+                        {order.items.length} barang &middot;{" "}
                         {order.shippingMethod.replace("_", " ")}
                       </p>
                       {NEXT_STATUS[order.status] && (
@@ -105,7 +105,7 @@ export function FulfillmentBoard() {
                           className="w-full text-xs"
                           onClick={() => advance(order.id)}
                         >
-                          Move to {NEXT_STATUS[order.status]}
+                          Pindah ke {NEXT_STATUS[order.status]}
                         </Button>
                       )}
                     </div>

@@ -15,8 +15,8 @@ export function CartItemRow({ item }: CartItemRowProps) {
   const { updateQty, removeItem } = useCartStore();
 
   return (
-    <div className="flex gap-3 rounded-lg border bg-white p-3">
-      <div className="relative h-16 w-16 shrink-0 rounded-md overflow-hidden bg-slate-100">
+    <div className="flex gap-3 rounded-2xl border border-[#d4d4d4] bg-white p-3">
+      <div className="relative h-16 w-16 shrink-0 rounded-xl overflow-hidden bg-[#E1F0ED]">
         <Image
           src={item.imageUrl}
           alt={item.name}
@@ -27,7 +27,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
       </div>
 
       <div className="flex-1 min-w-0 space-y-1">
-        <h4 className="text-sm font-medium text-slate-900 truncate">{item.name}</h4>
+        <h4 className="text-sm font-medium text-[#003032] truncate">{item.name}</h4>
         <Price cents={item.unitPriceCents} size="sm" />
 
         <div className="flex items-center gap-2">
@@ -56,7 +56,7 @@ export function CartItemRow({ item }: CartItemRowProps) {
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7 text-slate-400 hover:text-red-500"
+          className="h-7 w-7 text-[#8fb3b5] hover:text-red-500"
           onClick={() => removeItem(item.productId)}
         >
           <Trash2 className="h-3.5 w-3.5" />

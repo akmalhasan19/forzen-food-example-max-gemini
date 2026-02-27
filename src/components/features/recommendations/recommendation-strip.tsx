@@ -1,7 +1,7 @@
 "use client";
 
 import { Sparkles } from "lucide-react";
-import { ProductCard } from "@/components/features/catalog/product-card";
+import { ProductCardHome } from "@/components/features/catalog/product-card-home";
 import { getRecommendations } from "@/lib/utils/recommendation";
 import { useCartStore } from "@/store/cart-store";
 import { MOCK_PRODUCTS } from "@/lib/mock/products";
@@ -23,9 +23,9 @@ export function RecommendationStrip() {
         <Sparkles className="h-5 w-5 text-teal-600" />
         <h2 className="text-lg font-semibold text-slate-900">Rekomendasi untuk Anda</h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
         {recommendations.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCardHome key={product.id} product={product} />
         ))}
       </div>
     </section>

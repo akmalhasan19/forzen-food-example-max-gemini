@@ -22,12 +22,12 @@ const BADGE_CONFIG: Record<
   OrderStatus,
   { label: string; color: string; Icon: React.ElementType }
 > = {
-  pending: { label: "Pending", color: "bg-yellow-100 text-yellow-800", Icon: Clock },
-  paid: { label: "Paid", color: "bg-blue-100 text-blue-800", Icon: CreditCard },
-  packed: { label: "Packed", color: "bg-indigo-100 text-indigo-800", Icon: Package },
-  shipped: { label: "Shipped", color: "bg-teal-100 text-teal-800", Icon: Truck },
-  delivered: { label: "Delivered", color: "bg-green-100 text-green-800", Icon: CheckCircle2 },
-  cancelled: { label: "Cancelled", color: "bg-red-100 text-red-800", Icon: XCircle },
+  pending: { label: "Menunggu", color: "bg-yellow-100 text-yellow-800", Icon: Clock },
+  paid: { label: "Dibayar", color: "bg-blue-100 text-blue-800", Icon: CreditCard },
+  packed: { label: "Dikemas", color: "bg-indigo-100 text-indigo-800", Icon: Package },
+  shipped: { label: "Dikirim", color: "bg-teal-100 text-teal-800", Icon: Truck },
+  delivered: { label: "Terkirim", color: "bg-green-100 text-green-800", Icon: CheckCircle2 },
+  cancelled: { label: "Dibatalkan", color: "bg-red-100 text-red-800", Icon: XCircle },
 };
 
 const STATUS_FLOW: OrderStatus[] = [
@@ -49,7 +49,7 @@ export default function AdminOrdersPage() {
         const idx = STATUS_FLOW.indexOf(o.status);
         if (idx < 0 || idx >= STATUS_FLOW.length - 1) return o;
         const next = STATUS_FLOW[idx + 1];
-        toast.success(`Order #${o.id.slice(0, 8)} → ${next}`);
+        toast.success(`Pesanan #${o.id.slice(0, 8)} → ${next}`);
         return { ...o, status: next, updatedAt: new Date().toISOString() };
       })
     );
@@ -60,7 +60,7 @@ export default function AdminOrdersPage() {
       prev.map((o) => {
         if (o.id !== orderId) return o;
         if (o.status === "delivered" || o.status === "cancelled") return o;
-        toast.info(`Order #${o.id.slice(0, 8)} cancelled`);
+        toast.info(`Pesanan #${o.id.slice(0, 8)} dibatalkan`);
         return { ...o, status: "cancelled" as OrderStatus, updatedAt: new Date().toISOString() };
       })
     );
@@ -72,8 +72,8 @@ export default function AdminOrdersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Orders</h1>
-        <p className="text-sm text-slate-500">{orders.length} total orders</p>
+        <h1 className="text-2xl font-bold text-slate-900">Pesanan</h1>
+        <p className="text-sm text-slate-500">{orders.length} total pesanan</p>
       </div>
 
       {/* Status filter tabs */}
@@ -83,7 +83,7 @@ export default function AdminOrdersPage() {
           size="sm"
           onClick={() => setFilter("all")}
         >
-          All ({orders.length})
+          Semua ({orders.length})
         </Button>
         {STATUS_FLOW.map((status) => {
           const count = orders.filter((o) => o.status === status).length;
@@ -105,7 +105,7 @@ export default function AdminOrdersPage() {
         {filtered.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center text-slate-400">
-              No orders found.
+              Tidak ada pesanan.
             </CardContent>
           </Card>
         ) : (
@@ -133,18 +133,18 @@ export default function AdminOrdersPage() {
                       </div>
                       <p className="text-xs text-slate-500">
                         {formatDate(order.createdAt)} &middot;{" "}
-                        {order.items.length} items &middot;{" "}
+                        {order.items.length} barang &middot;{" "}
                         {order.shippingMethod.replace("_", " ")}
                       </p>
                       <p className="text-xs text-slate-500">
-                        Delivery: {formatDate(order.deliverySlotStart)},{" "}
+                        Pengiriman: {formatDate(order.deliverySlotStart)},{" "}
                         {formatTimeRange(
                           order.deliverySlotStart,
                           order.deliverySlotEnd
                         )}
                       </p>
                       <p className="text-xs text-slate-500">
-                        To: {order.deliveryAddress.fullName},{" "}
+                        Ke: {order.deliveryAddress.fullName},{" "}
                         {order.deliveryAddress.city},{" "}
                         {order.deliveryAddress.state}
                       </p>
@@ -161,7 +161,7 @@ export default function AdminOrdersPage() {
                             className="text-xs"
                             onClick={() => advanceStatus(order.id)}
                           >
-                            Advance
+                            Lanjutkan
                           </Button>
                         )}
                         {canCancel && (
@@ -171,7 +171,7 @@ export default function AdminOrdersPage() {
                             className="text-xs text-red-600 hover:text-red-700"
                             onClick={() => cancelOrder(order.id)}
                           >
-                            Cancel
+                            Batalkan
                           </Button>
                         )}
                       </div>

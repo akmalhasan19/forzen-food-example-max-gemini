@@ -48,79 +48,333 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --radius: 0.75rem;
+  --background: #EBEBEB;
+  --foreground: #003032;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #003032;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0d9488;
+  --popover-foreground: #003032;
+  --primary: #064C4F;
   --primary-foreground: #ffffff;
-  --secondary: #e2e8f0;
-  --secondary-foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f97316;
+  --secondary: #74BD00;
+  --secondary-foreground: #003032;
+  --muted: #E1F0ED;
+  --muted-foreground: #4a6b6d;
+  --accent: #FF7006;
   --accent-foreground: #ffffff;
-  --destructive: #ef4444;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #0d9488;
-  --chart-1: #0d9488;
-  --chart-2: #f97316;
-  --chart-3: #06b6d4;
-  --chart-4: #8b5cf6;
-  --chart-5: #ec4899;
-  --sidebar: #f8fafc;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #0d9488;
+  --destructive: #93000A;
+  --border: #d4d4d4;
+  --input: #d4d4d4;
+  --ring: #4CD9E0;
+  --chart-1: #064C4F;
+  --chart-2: #74BD00;
+  --chart-3: #4CD9E0;
+  --chart-4: #FF7006;
+  --chart-5: #6C1144;
+  --sidebar: #f5f5f5;
+  --sidebar-foreground: #003032;
+  --sidebar-primary: #064C4F;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #0d9488;
+  --sidebar-accent: #E1F0ED;
+  --sidebar-accent-foreground: #003032;
+  --sidebar-border: #d4d4d4;
+  --sidebar-ring: #4CD9E0;
 }
 
 .dark {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-  --card: #1e293b;
-  --card-foreground: #f8fafc;
-  --popover: #1e293b;
-  --popover-foreground: #f8fafc;
-  --primary: #14b8a6;
-  --primary-foreground: #0f172a;
-  --secondary: #334155;
-  --secondary-foreground: #f8fafc;
-  --muted: #334155;
-  --muted-foreground: #94a3b8;
-  --accent: #fb923c;
-  --accent-foreground: #0f172a;
-  --destructive: #f87171;
+  --background: #081414;
+  --foreground: #ffffff;
+  --card: #0d2020;
+  --card-foreground: #ffffff;
+  --popover: #0d2020;
+  --popover-foreground: #ffffff;
+  --primary: #4CD9E0;
+  --primary-foreground: #003032;
+  --secondary: #405F0E;
+  --secondary-foreground: #ffffff;
+  --muted: #1a2e2e;
+  --muted-foreground: #8fb3b5;
+  --accent: #FF7006;
+  --accent-foreground: #081414;
+  --destructive: #FFB4AB;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
-  --ring: #14b8a6;
-  --chart-1: #14b8a6;
-  --chart-2: #fb923c;
-  --chart-3: #22d3ee;
-  --chart-4: #a78bfa;
-  --chart-5: #f472b6;
-  --sidebar: #1e293b;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #14b8a6;
-  --sidebar-primary-foreground: #f8fafc;
-  --sidebar-accent: #334155;
-  --sidebar-accent-foreground: #f8fafc;
+  --ring: #4CD9E0;
+  --chart-1: #4CD9E0;
+  --chart-2: #74BD00;
+  --chart-3: #FF7006;
+  --chart-4: #6C1144;
+  --chart-5: #FFB4AB;
+  --sidebar: #0d2020;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #4CD9E0;
+  --sidebar-primary-foreground: #003032;
+  --sidebar-accent: #1a2e2e;
+  --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #14b8a6;
+  --sidebar-ring: #4CD9E0;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
+}
+
+/* ===== Gromuse Design System Utilities ===== */
+
+/* Curved Header */
+.gromuse-header {
+  background: var(--primary);
+  position: relative;
+  z-index: 10;
+}
+
+/* Content Sheet — GClippedContainer pattern */
+.gromuse-content-sheet {
+  position: relative;
+  background: var(--background);
+  margin-top: -2rem;
+  padding-top: 0.25rem;
+  z-index: 11;
+  border-radius: 1.75rem 1.75rem 0 0;
+}
+
+/* Pill Search Bar */
+.gromuse-search {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  flex: 1;
+}
+
+.gromuse-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--foreground);
+}
+
+.gromuse-search input::placeholder {
+  color: #8fb3b5;
+}
+
+.gromuse-search-icon {
+  color: #8fb3b5;
+  flex-shrink: 0;
+}
+
+/* Cart Button */
+.gromuse-cart-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.gromuse-cart-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Floating Pill Bottom Nav */
+.gromuse-bottom-nav {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border-radius: 9999px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+  gap: 0;
+  z-index: 50;
+}
+
+.gromuse-bottom-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--foreground);
+  position: relative;
+}
+
+.gromuse-bottom-nav-item.active {
+  color: var(--foreground);
+}
+
+.gromuse-bottom-nav-item.active::before {
+  content: '';
+  position: absolute;
+  inset: 0.25rem;
+  border-radius: 9999px;
+  background: rgba(116, 189, 0, 0.2);
+  z-index: -1;
+}
+
+.gromuse-bottom-nav-item:hover:not(.active) {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Product Card */
+.gromuse-product-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gromuse-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Clipped Container (for auth-style pages) */
+.gromuse-clipped-top {
+  position: relative;
+  background: var(--background);
+  border-radius: 2rem 2rem 0 0;
+  margin-top: -1.5rem;
+}
+
+/* Drag Handle */
+.gromuse-drag-handle {
+  width: 2.5rem;
+  height: 0.25rem;
+  border-radius: 9999px;
+  background: #d4d4d4;
+  margin: 0.75rem auto 0;
+}
+
+/* Section Headers */
+.gromuse-section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+  letter-spacing: -0.01em;
+}
+
+.gromuse-section-subtitle {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  margin-top: 0.125rem;
+}
+
+/* Animations */
+@keyframes gromuse-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gromuse-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.gromuse-animate-fade-up {
+  animation: gromuse-fade-up 0.5s ease-out both;
+}
+
+.gromuse-animate-slide-in {
+  animation: gromuse-slide-in 0.4s ease-out both;
+}
+
+/* Primary Button (green filled) */
+.gromuse-btn-primary {
+  background: var(--secondary);
+  color: var(--foreground);
+  border-radius: 9999px;
+  padding: 0.625rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.gromuse-btn-primary:hover {
+  filter: brightness(1.08);
+}
+
+.gromuse-btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* Secondary Button (outlined) */
+.gromuse-btn-secondary {
+  background: transparent;
+  color: var(--foreground);
+  border: 1.5px solid var(--border);
+  border-radius: 9999px;
+  padding: 0.625rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.gromuse-btn-secondary:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+/* ===== Product Card Home — Concave Button Container ===== */
+.product-card-home-btn {
+  position: relative;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+
+.product-card-home-btn::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background-color: var(--card, #ffffff);
+  border-radius: 0 0 50% 50%;
+  z-index: 1;
 }

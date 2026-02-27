@@ -39,10 +39,10 @@ export default function CheckoutPage() {
     return (
       <main className="mx-auto max-w-3xl px-4 py-16 text-center">
         <Truck className="h-16 w-16 mx-auto text-slate-300 mb-4" />
-        <h1 className="text-2xl font-bold mb-2">Nothing to check out</h1>
-        <p className="text-slate-500 mb-4">Add items to your cart first.</p>
+        <h1 className="text-2xl font-bold mb-2">Tidak ada yang dipesan</h1>
+        <p className="text-slate-500 mb-4">Tambahkan barang ke keranjang terlebih dahulu.</p>
         <Button onClick={() => router.push("/products")} className="bg-teal-600 hover:bg-teal-700">
-          Browse Products
+          Lihat Produk
         </Button>
       </main>
     );
@@ -73,10 +73,10 @@ export default function CheckoutPage() {
       });
       clearCart();
       resetCheckout();
-      toast.success("Order placed successfully!");
+      toast.success("Pesanan berhasil dibuat!");
       router.push("/orders");
     } catch {
-      toast.error("Failed to place order. Please try again.");
+      toast.error("Gagal membuat pesanan. Silakan coba lagi.");
     } finally {
       setSubmitting(false);
     }
@@ -84,7 +84,7 @@ export default function CheckoutPage() {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-6 md:px-6 lg:px-8 space-y-8">
-      <h1 className="text-2xl font-bold text-slate-900">Checkout</h1>
+      <h1 className="text-2xl font-bold text-slate-900">Pembayaran</h1>
 
       <CheckoutStepper currentStep={step} />
 
@@ -92,7 +92,7 @@ export default function CheckoutPage() {
         {/* Step 1: Shipping Method */}
         {step === 1 && (
           <div className="space-y-6">
-            <h2 className="text-lg font-semibold text-slate-900">Select Shipping Method</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Pilih Metode Pengiriman</h2>
             <RadioGroup
               value={shippingMethod}
               onValueChange={(val) => setShippingMethod(val as ShippingMethod)}
@@ -131,7 +131,7 @@ export default function CheckoutPage() {
                 disabled={!canProceedToStep2}
                 className="bg-teal-600 hover:bg-teal-700"
               >
-                Continue
+                Lanjutkan
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
@@ -156,14 +156,14 @@ export default function CheckoutPage() {
             <div className="flex justify-between">
               <Button variant="outline" onClick={() => setStep(1)}>
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back
+                Kembali
               </Button>
               <Button
                 onClick={() => setStep(3)}
                 disabled={!canProceedToStep3}
                 className="bg-teal-600 hover:bg-teal-700"
               >
-                Review Order
+                Tinjau Pesanan
                 <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
@@ -178,7 +178,7 @@ export default function CheckoutPage() {
             <div className="flex justify-between">
               <Button variant="outline" onClick={() => setStep(2)}>
                 <ArrowLeft className="h-4 w-4 mr-1" />
-                Back
+                Kembali
               </Button>
               <Button
                 onClick={handlePlaceOrder}
@@ -186,11 +186,11 @@ export default function CheckoutPage() {
                 className="bg-teal-600 hover:bg-teal-700"
               >
                 {submitting ? (
-                  "Placing Order..."
+                  "Memproses Pesanan..."
                 ) : (
                   <>
                     <Check className="h-4 w-4 mr-1" />
-                    Place Order
+                    Buat Pesanan
                   </>
                 )}
               </Button>

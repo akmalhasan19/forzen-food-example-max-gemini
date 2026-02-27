@@ -5,8 +5,8 @@ import { ProductGallery } from "@/components/features/catalog/product-gallery";
 import { getProductService } from "@/services/product.service";
 
 export const metadata: Metadata = {
-  title: "FrozenFresh | Premium Frozen Foods",
-  description: "Shop frozen meals, seafood, meats, and healthy essentials with cold-chain delivery.",
+  title: "FrozenFresh | Makanan Beku Premium",
+  description: "Belanja makanan beku, seafood, daging, dan kebutuhan sehat dengan pengiriman rantai dingin.",
 };
 
 export default async function HomePage() {
@@ -20,9 +20,9 @@ export default async function HomePage() {
     <main className="mx-auto max-w-7xl px-4 py-6 md:px-6 lg:px-8 space-y-8">
       {/* Hero */}
       <section className="rounded-2xl bg-gradient-to-r from-cyan-700 to-teal-600 text-white p-6 md:p-10">
-        <h1 className="text-3xl md:text-5xl font-bold">Frozen done right.</h1>
+        <h1 className="text-3xl md:text-5xl font-bold">Beku yang tepat.</h1>
         <p className="mt-3 max-w-2xl text-cyan-50">
-          Cold-chain protected groceries delivered in your selected time slot.
+          Belanjaan dilindungi rantai dingin, dikirim sesuai jadwal pilihan Anda.
         </p>
       </section>
 
@@ -31,7 +31,7 @@ export default async function HomePage() {
 
       {/* Featured Products */}
       <div>
-        <h2 className="text-xl font-semibold text-slate-900 mb-4">Featured Products</h2>
+        <h2 className="text-xl font-semibold text-slate-900 mb-4">Produk Unggulan</h2>
         <ProductGallery
           initialProducts={featured.slice(0, 12)}
           categories={categories}

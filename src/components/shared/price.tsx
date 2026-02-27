@@ -18,11 +18,11 @@ export function Price({ cents, originalCents, className = "", size = "md" }: Pri
 
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <span className={`font-bold text-teal-700 ${sizeClasses[size]}`}>
+      <span className={`font-bold text-[#064C4F] ${sizeClasses[size]}`}>
         {formatPrice(cents)}
       </span>
       {hasDiscount && (
-        <span className={`line-through text-slate-400 ${size === "lg" ? "text-base" : "text-xs"}`}>
+        <span className={`line-through text-[#8fb3b5] ${size === "lg" ? "text-base" : "text-xs"}`}>
           {formatPrice(originalCents)}
         </span>
       )}

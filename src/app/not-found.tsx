@@ -7,14 +7,14 @@ export default function NotFound() {
       <Snowflake className="h-16 w-16 text-teal-300 animate-pulse" />
       <h1 className="text-4xl font-bold text-slate-900">404</h1>
       <p className="text-lg text-slate-500 max-w-md">
-        This page seems to have melted away. Let&apos;s get you back to the frozen
-        goodness.
+        Halaman ini sepertinya sudah mencair. Ayo kembali ke kesegaran
+        beku.
       </p>
       <Link
         href="/"
         className="mt-2 inline-flex items-center rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-teal-700 transition-colors"
       >
-        Back to Home
+        Kembali ke Beranda
       </Link>
     </div>
   );

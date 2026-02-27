@@ -61,7 +61,7 @@ export function CatalogFilters({ categories }: CatalogFiltersProps) {
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold text-slate-900">Filter</h3>
         <Button variant="ghost" size="sm" onClick={resetFilters} className="text-xs text-slate-500">
-          Reset
+          Atur Ulang
         </Button>
       </div>
 

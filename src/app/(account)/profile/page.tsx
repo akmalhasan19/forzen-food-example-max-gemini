@@ -15,15 +15,15 @@ export default function ProfilePage() {
     return (
       <main className="mx-auto max-w-lg px-4 py-16 text-center">
         <User className="h-16 w-16 mx-auto text-slate-300 mb-4" />
-        <h1 className="text-2xl font-bold text-slate-900 mb-2">Sign In</h1>
-        <p className="text-slate-500 mb-6">Choose a mock account to sign in with:</p>
+        <h1 className="text-2xl font-bold text-slate-900 mb-2">Masuk</h1>
+        <p className="text-slate-500 mb-6">Pilih akun simulasi untuk masuk:</p>
         <div className="space-y-3">
           <Button
             className="w-full bg-teal-600 hover:bg-teal-700"
             onClick={() => login("customer@example.com")}
           >
             <User className="h-4 w-4 mr-2" />
-            Sign in as Customer
+            Masuk sebagai Pelanggan
           </Button>
           <Button
             variant="outline"
@@ -31,7 +31,7 @@ export default function ProfilePage() {
             onClick={() => login("admin@frozenfresh.com")}
           >
             <Shield className="h-4 w-4 mr-2" />
-            Sign in as Admin
+            Masuk sebagai Admin
           </Button>
         </div>
       </main>
@@ -40,7 +40,7 @@ export default function ProfilePage() {
 
   return (
     <main className="mx-auto max-w-2xl px-4 py-6 md:px-6 lg:px-8 space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900">My Profile</h1>
+      <h1 className="text-2xl font-bold text-slate-900">Profil Saya</h1>
 
       <Card>
         <CardHeader>
@@ -73,18 +73,18 @@ export default function ProfilePage() {
       <Separator />
 
       <div className="space-y-3">
-        <h2 className="text-sm font-medium text-slate-700">Quick Actions (Mock)</h2>
+        <h2 className="text-sm font-medium text-slate-700">Aksi Cepat (Simulasi)</h2>
         <div className="flex flex-wrap gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => switchRole(user.role === "admin" ? "customer" : "admin")}
           >
-            Switch to {user.role === "admin" ? "Customer" : "Admin"}
+            Beralih ke {user.role === "admin" ? "Pelanggan" : "Admin"}
           </Button>
           <Button variant="destructive" size="sm" onClick={logout}>
             <LogOut className="h-4 w-4 mr-1" />
-            Sign Out
+            Keluar
           </Button>
         </div>
       </div>

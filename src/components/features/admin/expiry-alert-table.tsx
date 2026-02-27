@@ -32,10 +32,10 @@ export function ExpiryAlertTable() {
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <AlertTriangle className="h-5 w-5 text-orange-500" />
-          Expiry Alerts
+          Peringatan Kedaluwarsa
         </CardTitle>
         <CardDescription>
-          Inventory batches sorted by nearest expiration date
+          Batch inventaris diurutkan berdasarkan tanggal kedaluwarsa terdekat
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -43,10 +43,10 @@ export function ExpiryAlertTable() {
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b text-left text-slate-500">
-                <th className="pb-2 pr-4 font-medium">Product</th>
+                <th className="pb-2 pr-4 font-medium">Produk</th>
                 <th className="pb-2 pr-4 font-medium">Batch</th>
-                <th className="pb-2 pr-4 font-medium">Qty</th>
-                <th className="pb-2 pr-4 font-medium">Expires</th>
+                <th className="pb-2 pr-4 font-medium">Jml</th>
+                <th className="pb-2 pr-4 font-medium">Kedaluwarsa</th>
                 <th className="pb-2 font-medium">Status</th>
               </tr>
             </thead>
@@ -76,11 +76,11 @@ export function ExpiryAlertTable() {
                     <td className="py-2.5">
                       {isExpired ? (
                         <Badge className="bg-red-100 text-red-800 border-0">
-                          Expired
+                          Kedaluwarsa
                         </Badge>
                       ) : isExpiringSoon ? (
                         <Badge className="bg-orange-100 text-orange-800 border-0">
-                          Expiring Soon
+                          Segera Kedaluwarsa
                         </Badge>
                       ) : (
                         <Badge className="bg-green-100 text-green-800 border-0">

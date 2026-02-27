@@ -62,7 +62,7 @@ describe("checkout workflow validation", () => {
   it("blocks review action without delivery slot and valid address", () => {
     const { rerender } = renderPage();
 
-    expect(screen.getByRole("button", { name: /review order/i })).toBeDisabled();
+    expect(screen.getByRole("button", { name: /tinjau pesanan/i })).toBeDisabled();
 
     act(() => {
       useCheckoutStore.setState({
@@ -91,6 +91,6 @@ describe("checkout workflow validation", () => {
       </QueryClientProvider>
     );
 
-    expect(screen.getByRole("button", { name: /review order/i })).toBeEnabled();
+    expect(screen.getByRole("button", { name: /tinjau pesanan/i })).toBeEnabled();
   });
 });
