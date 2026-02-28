@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ViewTransitions } from "next-view-transitions";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
@@ -27,31 +28,33 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=sessionStorage.getItem("theme");if(t==="dark")document.documentElement.classList.add("dark")}catch(e){}})()`
-          }}
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-          rel="stylesheet"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <QueryProvider>
-          {children}
-          <Toaster />
-          <MobileBottomNav />
-        </QueryProvider>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="id" suppressHydrationWarning>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(){try{var t=sessionStorage.getItem("theme");if(t==="dark")document.documentElement.classList.add("dark")}catch(e){}})()`
+            }}
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+            rel="stylesheet"
+          />
+        </head>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <QueryProvider>
+            {children}
+            <Toaster />
+            <MobileBottomNav />
+          </QueryProvider>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

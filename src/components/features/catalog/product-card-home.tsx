@@ -44,6 +44,7 @@ export function ProductCardHome({ product }: ProductCardHomeProps) {
             width={200}
             height={128}
             className="h-full w-auto object-contain drop-shadow-md"
+            style={{ viewTransitionName: `product-image-${product.id}` }}
           />
         </div>
 
@@ -69,16 +70,16 @@ export function ProductCardHome({ product }: ProductCardHomeProps) {
 
       {/* Concave button area */}
       <div
-        className={`w-full mt-auto product-card-home-btn pt-4 pb-0 h-16 flex items-center justify-center relative ${
-          isInCart
-            ? "bg-[#C5E1A5] dark:bg-[#5a7a2e]"
-            : "bg-[#F0F4EF] dark:bg-[#1a2e2e]"
-        }`}
+        className={`w-full mt-auto product-card-home-btn pt-4 pb-0 h-16 flex items-center justify-center relative ${isInCart
+          ? "bg-[#C5E1A5] dark:bg-[#5a7a2e]"
+          : "bg-[#F0F4EF] dark:bg-[#1a2e2e]"
+          }`}
       >
         {isInCart ? (
           /* Quantity controls */
           <div className="w-full h-full flex items-center justify-between px-6 text-foreground z-[2]">
             <button
+              aria-label="Kurangi"
               className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/10 transition-colors"
               onClick={() => updateQty(product.id, qty - 1)}
             >
@@ -86,6 +87,7 @@ export function ProductCardHome({ product }: ProductCardHomeProps) {
             </button>
             <span className="text-xl font-bold">{qty}</span>
             <button
+              aria-label="Tambah"
               className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/10 transition-colors"
               onClick={() => addItem(product)}
               disabled={product.inventoryAvailable <= qty}
@@ -96,6 +98,7 @@ export function ProductCardHome({ product }: ProductCardHomeProps) {
         ) : (
           /* Add to cart button */
           <button
+            aria-label="Tambah"
             className="w-full h-full flex items-center justify-center text-foreground transition-colors duration-200 z-[2] disabled:opacity-40"
             onClick={() => addItem(product)}
             disabled={product.inventoryAvailable <= 0}

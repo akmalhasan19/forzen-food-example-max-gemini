@@ -85,9 +85,9 @@ export function AppFooter() {
                 </a>
               </li>
               <li>
-                <a className="hover:text-[#93C572] transition-colors" href="#">
+                <Link className="hover:text-[#93C572] transition-colors" href="/contact">
                   Contact Us
-                </a>
+                </Link>
               </li>
               <li>
                 <a className="hover:text-[#93C572] transition-colors" href="#">

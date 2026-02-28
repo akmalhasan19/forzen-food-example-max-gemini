@@ -35,6 +35,7 @@ export function ProductListRow({ product }: ProductListRowProps) {
           fill
           sizes="96px"
           className="object-cover"
+          style={{ viewTransitionName: `product-image-${product.id}` }}
         />
       </Link>
 

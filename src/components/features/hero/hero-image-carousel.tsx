@@ -46,7 +46,7 @@ const slides: HeroSlide[] = [
   },
   {
     brand: "Sayuran",
-    name: "Mix Vegetables",
+    name: "Mix Veggies",
     category: "Sayuran Beku",
     price: "Rp35.000",
     image:

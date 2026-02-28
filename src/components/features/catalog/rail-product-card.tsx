@@ -56,6 +56,7 @@ export function RailProductCard({
                         fill
                         className="object-cover"
                         sizes="240px"
+                        style={{ viewTransitionName: `product-image-${product.id}` }}
                     />
                 </div>
             </Link>
@@ -88,6 +89,7 @@ export function RailProductCard({
                     {isInCart ? (
                         <div className="flex items-center gap-1.5">
                             <button
+                                aria-label="Kurangi"
                                 className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center hover:bg-primary/20 transition-colors active:scale-95"
                                 onClick={() => updateQty(product.id, qty - 1)}
                             >
@@ -97,6 +99,7 @@ export function RailProductCard({
                                 {qty}
                             </span>
                             <button
+                                aria-label="Tambah"
                                 className="w-8 h-8 rounded-full bg-[#93C572] text-white hover:bg-green-700 flex items-center justify-center shadow-md transition-all active:scale-95 disabled:opacity-40"
                                 onClick={() => addItem(product)}
                                 disabled={product.inventoryAvailable <= qty}
@@ -106,6 +109,7 @@ export function RailProductCard({
                         </div>
                     ) : (
                         <button
+                            aria-label="Tambah"
                             className="group/btn w-10 h-10 rounded-full bg-[#93C572] text-white hover:bg-green-700 flex items-center justify-center shadow-md transition-all active:scale-95 disabled:opacity-40"
                             onClick={() => addItem(product)}
                             disabled={product.inventoryAvailable <= 0}

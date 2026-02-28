@@ -1,0 +1,238 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - complementary [ref=e3]:
+      - link "FrozenFresh Admin" [ref=e5] [cursor=pointer]:
+        - /url: /admin
+      - navigation [ref=e6]:
+        - link "Dasbor" [ref=e7] [cursor=pointer]:
+          - /url: /admin
+          - img [ref=e8]
+          - text: Dasbor
+        - link "Produk" [ref=e13] [cursor=pointer]:
+          - /url: /admin/products
+          - img [ref=e14]
+          - text: Produk
+        - link "Pesanan" [ref=e18] [cursor=pointer]:
+          - /url: /admin/orders
+          - img [ref=e19]
+          - text: Pesanan
+        - link "Inventaris" [ref=e23] [cursor=pointer]:
+          - /url: /admin/inventory
+          - img [ref=e24]
+          - text: Inventaris
+      - generic [ref=e27]: Masuk sebagai Admin Pengguna
+    - main [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - heading "Dasbor" [level=1] [ref=e32]
+          - paragraph [ref=e33]: Ringkasan performa toko makanan beku Anda
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - generic [ref=e36]:
+              - generic [ref=e37]:
+                - generic [ref=e38]: Penjualan (Hari Ini)
+                - img [ref=e40]
+              - generic [ref=e42]:
+                - paragraph [ref=e43]: Rp 0
+                - paragraph [ref=e44]: 0 pesanan
+            - generic [ref=e45]:
+              - generic [ref=e46]:
+                - generic [ref=e47]: Penjualan (7 Hari)
+                - img [ref=e49]
+              - generic [ref=e51]:
+                - paragraph [ref=e52]: Rp 0
+                - paragraph [ref=e53]: 0 pesanan
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - generic [ref=e56]: Penjualan (30 Hari)
+                - img [ref=e58]
+              - generic [ref=e61]:
+                - paragraph [ref=e62]: Rp 0
+                - paragraph [ref=e63]: 0 pesanan
+            - generic [ref=e64]:
+              - generic [ref=e65]:
+                - generic [ref=e66]: Rata-rata Pesanan (30h)
+                - img [ref=e68]
+              - generic [ref=e72]:
+                - paragraph [ref=e73]: Rp 0
+                - paragraph [ref=e74]: jendela bergulir
+          - generic [ref=e75]:
+            - generic [ref=e77]: Produk Terlaris (berdasarkan unit terjual)
+            - generic [ref=e79]:
+              - generic [ref=e80]:
+                - generic [ref=e81]: 1. Mangkuk Ayam Panggang & Quinoa
+                - generic [ref=e82]: 2 unit
+              - generic [ref=e83]:
+                - generic [ref=e84]: 2. Fillet Salmon Tangkapan Liar
+                - generic [ref=e85]: 1 unit
+              - generic [ref=e86]:
+                - generic [ref=e87]: 3. Burger Sapi Grass-Fed (Isi 4)
+                - generic [ref=e88]: 1 unit
+              - generic [ref=e89]:
+                - generic [ref=e90]: 4. Pad Thai Vegan
+                - generic [ref=e91]: 1 unit
+              - generic [ref=e92]:
+                - generic [ref=e93]: 5. Nasi Kembang Kol
+                - generic [ref=e94]: 1 unit
+        - generic [ref=e95]:
+          - generic [ref=e97]: Papan Pemenuhan Pesanan
+          - generic [ref=e99]:
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - heading "Menunggu" [level=3] [ref=e103]
+                - generic [ref=e104]: "0"
+              - paragraph [ref=e105]: Tidak ada pesanan
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - heading "Dibayar" [level=3] [ref=e109]
+                - generic [ref=e110]: "0"
+              - paragraph [ref=e111]: Tidak ada pesanan
+            - generic [ref=e112]:
+              - generic [ref=e113]:
+                - heading "Dikemas" [level=3] [ref=e115]
+                - generic [ref=e116]: "0"
+              - paragraph [ref=e117]: Tidak ada pesanan
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - heading "Dikirim" [level=3] [ref=e121]
+                - generic [ref=e122]: "1"
+              - generic [ref=e123]:
+                - generic [ref=e124]:
+                  - generic [ref=e125]: "#order-00"
+                  - generic [ref=e126]: 26 Feb 2025
+                - paragraph [ref=e127]: Rp 449.500
+                - paragraph [ref=e128]: 3 barang · priority cold
+                - button "Pindah ke delivered" [ref=e129]
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - heading "Terkirim" [level=3] [ref=e133]
+                - generic [ref=e134]: "1"
+              - generic [ref=e135]:
+                - generic [ref=e136]:
+                  - generic [ref=e137]: "#order-00"
+                  - generic [ref=e138]: 18 Feb 2025
+                - paragraph [ref=e139]: Rp 449.400
+                - paragraph [ref=e140]: 2 barang · express
+        - generic [ref=e141]:
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - img [ref=e144]
+              - text: Peringatan Kedaluwarsa
+            - generic [ref=e146]: Batch inventaris diurutkan berdasarkan tanggal kedaluwarsa terdekat
+          - table [ref=e149]:
+            - rowgroup [ref=e150]:
+              - row "Produk Batch Jml Kedaluwarsa Status" [ref=e151]:
+                - columnheader "Produk" [ref=e152]
+                - columnheader "Batch" [ref=e153]
+                - columnheader "Jml" [ref=e154]
+                - columnheader "Kedaluwarsa" [ref=e155]
+                - columnheader "Status" [ref=e156]
+            - rowgroup [ref=e157]:
+              - row "Tender Dada Ayam Organik CBT-2025-001 3 20 Mar 2025 Kedaluwarsa" [ref=e158]:
+                - cell "Tender Dada Ayam Organik" [ref=e159]
+                - cell "CBT-2025-001" [ref=e160]
+                - cell "3" [ref=e161]
+                - cell "20 Mar 2025" [ref=e162]:
+                  - generic [ref=e163]:
+                    - img [ref=e164]
+                    - text: 20 Mar 2025
+                - cell "Kedaluwarsa" [ref=e167]:
+                  - generic [ref=e168]: Kedaluwarsa
+              - row "Fillet Salmon Tangkapan Liar WSF-2025-001 20 5 Apr 2025 Kedaluwarsa" [ref=e169]:
+                - cell "Fillet Salmon Tangkapan Liar" [ref=e170]
+                - cell "WSF-2025-001" [ref=e171]
+                - cell "20" [ref=e172]
+                - cell "5 Apr 2025" [ref=e173]:
+                  - generic [ref=e174]:
+                    - img [ref=e175]
+                    - text: 5 Apr 2025
+                - cell "Kedaluwarsa" [ref=e178]:
+                  - generic [ref=e179]: Kedaluwarsa
+              - row "Patty Burger Nabati (Isi 4) VBP-2025-001 18 22 Apr 2025 Kedaluwarsa" [ref=e180]:
+                - cell "Patty Burger Nabati (Isi 4)" [ref=e181]
+                - cell "VBP-2025-001" [ref=e182]
+                - cell "18" [ref=e183]
+                - cell "22 Apr 2025" [ref=e184]:
+                  - generic [ref=e185]:
+                    - img [ref=e186]
+                    - text: 22 Apr 2025
+                - cell "Kedaluwarsa" [ref=e189]:
+                  - generic [ref=e190]: Kedaluwarsa
+              - row "Udang Harimau Jumbo JTS-2025-001 35 8 Mei 2025 Kedaluwarsa" [ref=e191]:
+                - cell "Udang Harimau Jumbo" [ref=e192]
+                - cell "JTS-2025-001" [ref=e193]
+                - cell "35" [ref=e194]
+                - cell "8 Mei 2025" [ref=e195]:
+                  - generic [ref=e196]:
+                    - img [ref=e197]
+                    - text: 8 Mei 2025
+                - cell "Kedaluwarsa" [ref=e200]:
+                  - generic [ref=e201]: Kedaluwarsa
+              - row "Kue Lava Cokelat (Isi 2) CLC-2025-001 22 10 Mei 2025 Kedaluwarsa" [ref=e202]:
+                - cell "Kue Lava Cokelat (Isi 2)" [ref=e203]
+                - cell "CLC-2025-001" [ref=e204]
+                - cell "22" [ref=e205]
+                - cell "10 Mei 2025" [ref=e206]:
+                  - generic [ref=e207]:
+                    - img [ref=e208]
+                    - text: 10 Mei 2025
+                - cell "Kedaluwarsa" [ref=e211]:
+                  - generic [ref=e212]: Kedaluwarsa
+              - row "Kebab Kofta Kambing (Isi 6) LKK-2025-001 15 4 Jun 2025 Kedaluwarsa" [ref=e213]:
+                - cell "Kebab Kofta Kambing (Isi 6)" [ref=e214]
+                - cell "LKK-2025-001" [ref=e215]
+                - cell "15" [ref=e216]
+                - cell "4 Jun 2025" [ref=e217]:
+                  - generic [ref=e218]:
+                    - img [ref=e219]
+                    - text: 4 Jun 2025
+                - cell "Kedaluwarsa" [ref=e222]:
+                  - generic [ref=e223]: Kedaluwarsa
+              - row "Lasagna Daging Sapi Klasik BL-2025-001 30 15 Jun 2025 Kedaluwarsa" [ref=e224]:
+                - cell "Lasagna Daging Sapi Klasik" [ref=e225]
+                - cell "BL-2025-001" [ref=e226]
+                - cell "30" [ref=e227]
+                - cell "15 Jun 2025" [ref=e228]:
+                  - generic [ref=e229]:
+                    - img [ref=e230]
+                    - text: 15 Jun 2025
+                - cell "Kedaluwarsa" [ref=e233]:
+                  - generic [ref=e234]: Kedaluwarsa
+              - row "Paket Variasi Meal Prep Keto KMP-2025-001 12 16 Jun 2025 Kedaluwarsa" [ref=e235]:
+                - cell "Paket Variasi Meal Prep Keto" [ref=e236]
+                - cell "KMP-2025-001" [ref=e237]
+                - cell "12" [ref=e238]
+                - cell "16 Jun 2025" [ref=e239]:
+                  - generic [ref=e240]:
+                    - img [ref=e241]
+                    - text: 16 Jun 2025
+                - cell "Kedaluwarsa" [ref=e244]:
+                  - generic [ref=e245]: Kedaluwarsa
+              - row "Butter Chicken dengan Nasi Basmati BC-2025-001 25 1 Jul 2025 Kedaluwarsa" [ref=e246]:
+                - cell "Butter Chicken dengan Nasi Basmati" [ref=e247]
+                - cell "BC-2025-001" [ref=e248]
+                - cell "25" [ref=e249]
+                - cell "1 Jul 2025" [ref=e250]:
+                  - generic [ref=e251]:
+                    - img [ref=e252]
+                    - text: 1 Jul 2025
+                - cell "Kedaluwarsa" [ref=e255]:
+                  - generic [ref=e256]: Kedaluwarsa
+              - row "Mangkuk Ayam Panggang & Quinoa GCB-2025-001 45 10 Jul 2025 Kedaluwarsa" [ref=e257]:
+                - cell "Mangkuk Ayam Panggang & Quinoa" [ref=e258]
+                - cell "GCB-2025-001" [ref=e259]
+                - cell "45" [ref=e260]
+                - cell "10 Jul 2025" [ref=e261]:
+                  - generic [ref=e262]:
+                    - img [ref=e263]
+                    - text: 10 Jul 2025
+                - cell "Kedaluwarsa" [ref=e266]:
+                  - generic [ref=e267]: Kedaluwarsa
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e273] [cursor=pointer]:
+    - img [ref=e274]
+  - alert [ref=e277]
+```

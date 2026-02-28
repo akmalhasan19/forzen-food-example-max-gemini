@@ -69,6 +69,7 @@ export function ProductDetailClient({
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover"
             priority
+            style={{ viewTransitionName: `product-image-${product.id}` }}
           />
           {product.flashSaleEndsAt && (
             <div className="absolute top-4 left-4">

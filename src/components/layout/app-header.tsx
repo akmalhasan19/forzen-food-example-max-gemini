@@ -60,18 +60,13 @@ export function AppHeader() {
             >
               Shop
             </Link>
-            <a
-              href="#"
-              className="text-gray-500 dark:text-gray-400 font-medium hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-            >
-              Our Story
-            </a>
-            <a
-              href="#"
+
+            <Link
+              href="/contact"
               className="text-gray-500 dark:text-gray-400 font-medium hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               Contact
-            </a>
+            </Link>
             {user?.role === "admin" && (
               <Link
                 href="/admin"
