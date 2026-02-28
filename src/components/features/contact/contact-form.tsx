@@ -20,7 +20,11 @@ const initialForm: FormData = {
 const inputBaseClass =
     "w-full h-11 px-4 rounded-xl bg-gray-50 dark:bg-zinc-800/60 border border-gray-200 dark:border-zinc-700 text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-[#93C572] focus:ring-2 focus:ring-[#93C572]/30 focus:outline-none transition-all duration-200 text-sm";
 
-export function ContactForm() {
+interface ContactFormProps {
+    onSuccess?: (name: string) => void;
+}
+
+export function ContactForm({ onSuccess }: ContactFormProps) {
     const [form, setForm] = useState<FormData>(initialForm);
     const [sending, setSending] = useState(false);
 
@@ -41,6 +45,11 @@ export function ContactForm() {
         setSending(false);
 
         toast.success("Pesan berhasil dikirim! Kami akan segera menghubungi Anda.");
+
+        if (onSuccess) {
+            onSuccess(form.name);
+        }
+
         setForm(initialForm);
     };
 
