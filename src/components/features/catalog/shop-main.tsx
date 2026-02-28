@@ -61,7 +61,7 @@ export function ShopMain({ products, categories }: ShopMainProps) {
             {/* Sticky Category Nav */}
             <nav className="sticky top-20 z-40 w-full bg-white/80 dark:bg-[var(--card)]/80 backdrop-blur-lg border-b border-slate-100/50 dark:border-white/5 py-4">
                 <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 overflow-x-auto hide-scrollbar">
-                    <div className="flex items-center gap-3 min-w-max pb-1">
+                    <div className="flex items-center gap-6 min-w-max pb-1">
                         {allNavItems.map((item) => (
                             <button
                                 key={item.id}

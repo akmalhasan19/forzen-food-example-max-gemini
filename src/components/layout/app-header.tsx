@@ -135,9 +135,9 @@ export function AppHeader() {
               <span className="material-icons-round text-3xl text-teal-700 relative top-1">person</span>
             </div>
 
-            {/* Mobile menu button */}
+            {/* Mobile menu button (Hidden - Replaced by Bottom Nav) */}
             <button
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors md:hidden"
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors hidden"
               onClick={toggleMobileNav}
               aria-label="Open menu"
             >

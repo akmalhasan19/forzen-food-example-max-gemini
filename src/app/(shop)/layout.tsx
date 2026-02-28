@@ -9,7 +9,7 @@ export default function ShopLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex min-h-screen flex-col bg-neutral-50 dark:bg-zinc-900 text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 selection:bg-amber-200 selection:text-black">
+    <div className="flex min-h-screen flex-col bg-neutral-50 dark:bg-zinc-900 text-gray-900 dark:text-gray-100 font-body transition-colors duration-300 selection:bg-amber-200 selection:text-black pb-16 md:pb-0">
       <AppHeader />
       <MobileNav />
       <CartDrawer />

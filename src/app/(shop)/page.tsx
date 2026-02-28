@@ -54,8 +54,9 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 lg:items-center">
+          {/* Title and Description */}
+          <div className="space-y-8 order-1 lg:col-start-1 lg:row-start-1">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Cold & Fresh <br />
               Kualitas{" "}
@@ -81,26 +82,30 @@ export default function HomePage() {
               seafood pilihan, hingga sayuran dan olahan siap masak.
               Diantar dengan rantai dingin.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/products">
-                <button className="bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2">
-                  Belanja Sekarang
-                  <span className="material-icons-round">arrow_forward</span>
-                </button>
-              </Link>
-              <button className="bg-white dark:bg-zinc-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 flex items-center gap-2">
-                <span className="material-icons-round">play_circle</span>
-                Lihat Video
-              </button>
-            </div>
-            <div className="pt-8 relative z-50">
-              <CustomerRatingDropdown />
-            </div>
           </div>
 
           {/* Hero Image Card */}
-          <div className="-mt-12 lg:-mt-16">
+          <div className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-3 mt-0 lg:-mt-16 relative z-20">
             <HeroImageCarousel />
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 order-3 lg:col-start-1 lg:row-start-2">
+            <Link href="/products" className="w-full sm:w-auto">
+              <button className="w-full bg-black dark:bg-white text-white dark:text-black px-8 py-4 rounded-2xl font-semibold text-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-2">
+                Belanja Sekarang
+                <span className="material-icons-round">arrow_forward</span>
+              </button>
+            </Link>
+            <button className="w-full sm:w-auto bg-white dark:bg-zinc-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300 flex items-center justify-center gap-2">
+              <span className="material-icons-round">play_circle</span>
+              Lihat Video
+            </button>
+          </div>
+
+          {/* Customer Rating */}
+          <div className="order-4 lg:col-start-1 lg:row-start-3 pt-2 relative z-30 lg:-mt-4">
+            <CustomerRatingDropdown />
           </div>
         </div>
       </section>

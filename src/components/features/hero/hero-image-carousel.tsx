@@ -237,44 +237,38 @@ export function HeroImageCarousel() {
 
       {/* Main card */}
       <div
-        className="relative z-10 bg-white dark:bg-zinc-800 rounded-[2.5rem] shadow-2xl p-8 transform transition hover:scale-[1.01] duration-500 border border-gray-100 dark:border-gray-800 overflow-hidden cursor-pointer"
+        className="relative z-10 bg-white dark:bg-zinc-800 rounded-[2rem] sm:rounded-[2.5rem] shadow-2xl p-5 sm:p-8 transform transition hover:scale-[1.01] duration-500 border border-gray-100 dark:border-gray-800 overflow-hidden cursor-pointer"
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
         onPointerLeave={handlePointerUp}
         onPointerCancel={handlePointerUp}
       >
-        {/* Price badge */}
-        <div
-          ref={priceRef}
-          className="absolute top-8 right-8 bg-[#93C572] text-white font-bold px-4 py-2 rounded-full shadow-sm z-20"
-        >
-          {current.price}
-        </div>
 
-        <div className="grid grid-cols-2 gap-4 h-full">
+
+        <div className="grid grid-cols-[1.2fr_1fr] sm:grid-cols-2 gap-3 sm:gap-4 h-full">
           {/* Text content */}
-          <div className="flex flex-col justify-center space-y-4">
+          <div className="flex flex-col justify-center space-y-3 sm:space-y-4">
             <span
               ref={textBrandRef}
-              className="text-sm font-semibold tracking-wider text-gray-400 uppercase"
+              className="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 uppercase"
             >
               Featured
             </span>
             <h2
               ref={textNameRef}
-              className="font-display text-4xl font-bold text-gray-900 dark:text-white"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight sm:leading-none"
             >
               {current.name}
             </h2>
             <span
               ref={textCategoryRef}
-              className="inline-block bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-lg text-sm font-medium w-max"
+              className="inline-block bg-gray-100 dark:bg-gray-700 px-2 py-1 sm:px-3 sm:py-1 rounded-md sm:rounded-lg text-[10px] sm:text-sm font-medium w-max"
             >
               {current.category}
             </span>
-            <div className="pt-4">
-              <button className="bg-black dark:bg-white text-white dark:text-black p-4 rounded-2xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-lg flex items-center justify-center w-16 h-16">
-                <span className="material-icons-round text-2xl">
+            <div className="pt-2 sm:pt-4">
+              <button className="bg-black dark:bg-white text-white dark:text-black p-3 sm:p-4 rounded-xl sm:rounded-2xl hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors shadow-lg flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16">
+                <span className="material-icons-round text-xl sm:text-2xl">
                   shopping_basket
                 </span>
               </button>
@@ -282,13 +276,22 @@ export function HeroImageCarousel() {
           </div>
 
           {/* Image container */}
-          <div className="flex items-center justify-center relative rounded-3xl overflow-hidden">
+          <div className="flex items-center justify-center relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[200px]">
             <div className="absolute w-48 h-48 bg-red-100 dark:bg-red-900/30 rounded-full blur-2xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+
+            {/* Price badge moved inside Image Container */}
+            <div
+              ref={priceRef}
+              className="absolute top-0 right-0 bg-[#93C572] text-white font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-bl-2xl rounded-tr-2xl sm:rounded-bl-[1.5rem] sm:rounded-tr-[1.5rem] shadow-sm z-20 text-xs sm:text-base border-b border-l border-white/20"
+            >
+              {current.price}
+            </div>
+
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               ref={imageRef}
               alt={`${current.name} product`}
-              className="relative z-10 w-full h-full object-cover drop-shadow-xl rounded-3xl"
+              className="relative z-10 w-full h-full object-cover drop-shadow-xl rounded-2xl sm:rounded-3xl"
               src={current.image}
               style={{ maxHeight: "400px" }}
             />

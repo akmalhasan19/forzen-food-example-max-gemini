@@ -41,7 +41,7 @@ export function ProductCategoryRail({
 
     return (
         <ScrollRevealGroup
-            className="relative group/section pl-4 sm:pl-6 lg:pl-8"
+            className="scroll-mt-[168px] relative group/section pl-4 sm:pl-6 lg:pl-8"
             id={id}
             forceReveal={isFirst}
         >

@@ -39,7 +39,7 @@ export function RailProductCard({
     };
 
     return (
-        <article className="reveal-slide-up-child flex-none w-[240px] h-[360px] bg-white dark:bg-[var(--card)] rounded-lg shadow-[0_4px_20px_-2px_rgba(0,77,64,0.08)] hover:shadow-[0_10px_25px_-5px_rgba(0,77,64,0.15)] hover:-translate-y-1 transition-all duration-300 snap-start group relative overflow-hidden border border-slate-100 dark:border-[var(--border)]">
+        <article className="reveal-slide-up-child flex-none w-[240px] h-[360px] bg-white dark:bg-[var(--card)] rounded-3xl shadow-[0_4px_20px_-2px_rgba(0,77,64,0.08)] hover:shadow-[0_10px_25px_-5px_rgba(0,77,64,0.15)] hover:-translate-y-1 transition-all duration-300 snap-start group relative overflow-hidden border border-slate-100 dark:border-[var(--border)]">
             {/* Image Section */}
             <Link href={`/products/${product.slug}`}>
                 <div className="h-[200px] w-full relative bg-gray-100 dark:bg-muted/30">
@@ -80,7 +80,7 @@ export function RailProductCard({
                                 {formatPrice(originalPriceCents)}
                             </span>
                         )}
-                        <span className="font-display font-bold text-xl text-primary">
+                        <span className="font-display font-bold text-xl text-black dark:text-white">
                             {formatPrice(product.priceCents)}
                         </span>
                     </div>
@@ -97,7 +97,7 @@ export function RailProductCard({
                                 {qty}
                             </span>
                             <button
-                                className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-md hover:brightness-110 transition-all active:scale-95 disabled:opacity-40"
+                                className="w-8 h-8 rounded-full bg-[#93C572] text-white hover:bg-green-700 flex items-center justify-center shadow-md transition-all active:scale-95 disabled:opacity-40"
                                 onClick={() => addItem(product)}
                                 disabled={product.inventoryAvailable <= qty}
                             >
@@ -106,7 +106,7 @@ export function RailProductCard({
                         </div>
                     ) : (
                         <button
-                            className="group/btn w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center shadow-md hover:brightness-110 transition-all active:scale-95 disabled:opacity-40"
+                            className="group/btn w-10 h-10 rounded-full bg-[#93C572] text-white hover:bg-green-700 flex items-center justify-center shadow-md transition-all active:scale-95 disabled:opacity-40"
                             onClick={() => addItem(product)}
                             disabled={product.inventoryAvailable <= 0}
                         >
