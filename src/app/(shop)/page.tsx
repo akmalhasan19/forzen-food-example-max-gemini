@@ -54,9 +54,9 @@ export default function HomePage() {
     <>
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 lg:items-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-12 lg:items-center">
           {/* Title and Description */}
-          <div className="space-y-8 order-1 lg:col-start-1 lg:row-start-1">
+          <div className="space-y-4 md:space-y-8 order-1 lg:col-start-1 lg:row-start-1">
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               Cold & Fresh <br />
               Kualitas{" "}
@@ -77,7 +77,7 @@ export default function HomePage() {
                 </svg>
               </span>
             </h1>
-            <p className="text-lg text-gray-500 dark:text-gray-400 max-w-md">
+            <p className="hidden md:block text-lg text-gray-500 dark:text-gray-400 max-w-md">
               Temukan pilihan makanan beku premium — dari daging segar,
               seafood pilihan, hingga sayuran dan olahan siap masak.
               Diantar dengan rantai dingin.
@@ -85,7 +85,7 @@ export default function HomePage() {
           </div>
 
           {/* Hero Image Card */}
-          <div className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-3 mt-0 lg:-mt-16 relative z-20">
+          <div className="order-2 lg:col-start-2 lg:row-start-1 lg:row-span-3 -mt-4 lg:-mt-16 relative z-20">
             <HeroImageCarousel />
           </div>
 
@@ -112,16 +112,16 @@ export default function HomePage() {
 
       {/* Collections Section */}
       <section className="py-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollRevealGroup className="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
-          <div>
-            <h3 className="font-display text-2xl font-bold text-gray-900 dark:text-white mb-2">
+        <ScrollRevealGroup className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+          <div className="w-full text-left max-w-lg">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 leading-tight">
               Koleksi Kami
             </h3>
-            <p className="text-gray-500 dark:text-gray-400">
+            <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base">
               Jelajahi kategori produk beku terbaik.
             </p>
           </div>
-          <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 w-full md:w-auto">
+          <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 w-full md:w-auto -mx-4 px-4 sm:mx-0 sm:px-0">
             <button className="reveal-slide-from-right border-0 px-6 py-3 rounded-2xl bg-black text-white dark:bg-white dark:text-black font-medium text-sm whitespace-nowrap shadow-md">
               Semua
             </button>
