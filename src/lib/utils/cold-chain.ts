@@ -2,16 +2,18 @@ import { SHIPPING_RATES, PACKAGING_INSULATION_BONUS_MINUTES } from "@/lib/consta
 import type { ShippingMethod, TemperatureRequirement } from "@/types/domain";
 
 /**
- * Calculate shipping cost using weight-based formula:
- * base + (weightGrams / 500 rounded up * perHalfKgRate) + coldPackagingFee
+ * Calculate shipping cost using weight-based + distance-based formula:
+ * base + (weightGrams / 500 rounded up * perHalfKgRate) + coldPackagingFee + (distanceKm * perKmRate)
  */
 export function calculateShippingCents(
   weightGrams: number,
-  method: ShippingMethod
+  method: ShippingMethod,
+  distanceKm: number = 0
 ): number {
   const rate = SHIPPING_RATES[method];
   const halfKgUnits = Math.ceil(weightGrams / 500);
-  return rate.baseCents + halfKgUnits * rate.perHalfKgCents + rate.coldPackagingCents;
+  const distanceSurcharge = Math.ceil(distanceKm) * rate.perKmCents;
+  return rate.baseCents + halfKgUnits * rate.perHalfKgCents + rate.coldPackagingCents + distanceSurcharge;
 }
 
 /**

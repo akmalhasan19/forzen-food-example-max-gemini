@@ -6,6 +6,7 @@ export interface ShippingRate {
   description: string;
   baseCents: number;
   perHalfKgCents: number;
+  perKmCents: number;
   coldPackagingCents: number;
   estimatedDays: string;
   methodBaseMinutes: number;
@@ -18,6 +19,7 @@ export const SHIPPING_RATES: Record<ShippingMethod, ShippingRate> = {
     description: "Kemasan insulasi, 3-5 hari kerja",
     baseCents: 599,
     perHalfKgCents: 99,
+    perKmCents: 5,
     coldPackagingCents: 199,
     estimatedDays: "3-5 hari",
     methodBaseMinutes: 300,
@@ -28,6 +30,7 @@ export const SHIPPING_RATES: Record<ShippingMethod, ShippingRate> = {
     description: "Kemasan dingin premium, 1-2 hari kerja",
     baseCents: 999,
     perHalfKgCents: 149,
+    perKmCents: 10,
     coldPackagingCents: 299,
     estimatedDays: "1-2 hari",
     methodBaseMinutes: 180,
@@ -38,6 +41,7 @@ export const SHIPPING_RATES: Record<ShippingMethod, ShippingRate> = {
     description: "Dijamin beku, pengiriman hari ini/besok",
     baseCents: 1499,
     perHalfKgCents: 199,
+    perKmCents: 20,
     coldPackagingCents: 499,
     estimatedDays: "Hari ini/besok",
     methodBaseMinutes: 90,

@@ -74,8 +74,23 @@ export function MobileBottomNav() {
                                     <span className="material-icons-round text-2xl">
                                         {item.icon}
                                     </span>
-                                    <span className={`text-[10px] font-medium tracking-wide ${isActive ? "font-bold" : ""}`}>
-                                        {item.label}
+                                    <span className={`relative text-[10px] tracking-wide ${isActive ? "font-bold" : "font-medium"}`}>
+                                        <span className="relative z-10">{item.label}</span>
+                                        {isActive && (
+                                            <svg
+                                                className="absolute w-[120%] h-2 -bottom-0.5 -left-[10%] -z-10 text-[#93C572]"
+                                                preserveAspectRatio="none"
+                                                viewBox="0 0 100 20"
+                                            >
+                                                <path
+                                                    d="M0 15 Q 50 25 100 15"
+                                                    fill="none"
+                                                    opacity="0.6"
+                                                    stroke="currentColor"
+                                                    strokeWidth="12"
+                                                />
+                                            </svg>
+                                        )}
                                     </span>
                                 </Link>
                             )}

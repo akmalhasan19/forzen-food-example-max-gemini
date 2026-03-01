@@ -66,18 +66,32 @@ export function HeroImageCarousel() {
   const isPausedRef = useRef(false);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const isMountedRef = useRef(true);
 
   useEffect(() => {
-    // Cleanup any active GSAP timelines on unmount to prevent setting properties on null refs
+    isMountedRef.current = true;
+    // Scope all GSAP animations to the container for safe bulk cleanup
+    const ctx = gsap.context(() => { }, containerRef);
+
     return () => {
+      isMountedRef.current = false;
+      // 1. Stop the interval source FIRST to prevent new animations from being created
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      // 2. Kill the active timeline
       if (timelineRef.current) {
         timelineRef.current.kill();
+        timelineRef.current = null;
       }
+      // 3. Revert all GSAP animations scoped to this container
+      ctx.revert();
     };
   }, []);
 
   const animateTransition = useCallback((nextIndex: number) => {
-    if (isAnimatingRef.current || isPausedRef.current) return;
+    if (isAnimatingRef.current || isPausedRef.current || !isMountedRef.current) return;
 
     // Ensure all refs are attached before animating
     if (
@@ -142,6 +156,24 @@ export function HeroImageCarousel() {
 
       // Phase 2: Instant swap — set new content below, then slide in
       .call(() => {
+        // Guard: abort if component unmounted or refs detached during async timeline
+        if (
+          !isMountedRef.current ||
+          !imageRef.current ||
+          !priceRef.current ||
+          !textBrandRef.current ||
+          !textNameRef.current ||
+          !textCategoryRef.current
+        ) {
+          // Kill the timeline to prevent Phase 3 from running on null refs
+          if (timelineRef.current) {
+            timelineRef.current.kill();
+            timelineRef.current = null;
+          }
+          isAnimatingRef.current = false;
+          return;
+        }
+
         setCurrentIndex(nextIndex);
 
         // Reset positions to below for entrance
@@ -164,10 +196,8 @@ export function HeroImageCarousel() {
         );
 
         // Pre-load image src swap
-        if (imageRef.current) {
-          imageRef.current.src = nextSlide.image;
-          imageRef.current.alt = `${nextSlide.name} product`;
-        }
+        imageRef.current.src = nextSlide.image;
+        imageRef.current.alt = `${nextSlide.name} product`;
       })
 
       // Phase 3: Slide new content up from bottom + fade in

@@ -9,7 +9,7 @@ export default function AccountLayout({ children }: { children: React.ReactNode 
       <AppHeader />
       <MobileNav />
       <CartDrawer />
-      <div className="flex-1">{children}</div>
+      <div className="flex-1 pt-20">{children}</div>
       <AppFooter />
     </div>
   );

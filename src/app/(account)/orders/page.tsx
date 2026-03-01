@@ -140,7 +140,7 @@ export default function OrdersPage() {
         <p className="text-slate-500 mb-6">
           Masuk untuk melihat riwayat pesanan Anda.
         </p>
-        <Link href="/profile">
+        <Link href="/login">
           <Button className="bg-teal-600 hover:bg-teal-700">Masuk</Button>
         </Link>
       </main>

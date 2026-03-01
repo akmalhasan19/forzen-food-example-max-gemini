@@ -7,6 +7,7 @@ import { useCartStore } from "@/store/cart-store";
 import { useAuthStore } from "@/store/auth-store";
 import { useUiStore } from "@/store/ui-store";
 import { formatPrice } from "@/lib/utils/currency";
+import { ProfileDropdown } from "./profile-dropdown";
 
 export function AppHeader() {
   const totalItems = useCartStore((s) => s.totalItems);
@@ -48,33 +49,41 @@ export function AppHeader() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex space-x-8 items-center">
-            <Link
-              href="/"
-              className="text-gray-900 dark:text-gray-100 font-medium hover:text-[#93C572] transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/products"
-              className="text-gray-500 dark:text-gray-400 font-medium hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-            >
-              Shop
-            </Link>
-
-            <Link
-              href="/contact"
-              className="text-gray-500 dark:text-gray-400 font-medium hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-            >
-              Contact
-            </Link>
-            {user?.role === "admin" && (
-              <Link
-                href="/admin"
-                className="text-gray-500 dark:text-gray-400 font-medium hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              >
-                Admin
-              </Link>
-            )}
+            {[
+              { label: "Home", href: "/" },
+              { label: "Shop", href: "/products" },
+              { label: "Contact", href: "/contact" },
+              ...(user?.role === "admin" ? [{ label: "Admin", href: "/admin" }] : []),
+            ].map((link) => {
+              const isActive = pathname === link.href || (link.href !== "/" && pathname?.startsWith(link.href));
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className={`relative font-medium transition-colors ${isActive
+                      ? "text-[#93C572] dark:text-[#93C572]"
+                      : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                    }`}
+                >
+                  <span className="relative z-10">{link.label}</span>
+                  {isActive && (
+                    <svg
+                      className="absolute w-[120%] h-3 -bottom-1 -left-[10%] -z-10 text-[#93C572]"
+                      preserveAspectRatio="none"
+                      viewBox="0 0 100 20"
+                    >
+                      <path
+                        d="M0 15 Q 50 25 100 15"
+                        fill="none"
+                        opacity="0.6"
+                        stroke="currentColor"
+                        strokeWidth="12"
+                      />
+                    </svg>
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right actions */}
@@ -124,11 +133,7 @@ export function AppHeader() {
               </div>
             </div>
 
-            {/* Desktop User Avatar (mock layout) */}
-            <div className="hidden md:flex ml-2 h-10 w-10 bg-teal-100 rounded-full border-2 border-white shadow-sm overflow-hidden items-end justify-center">
-              {/* using an arbitrary user-like visual to match reference */}
-              <span className="material-icons-round text-3xl text-teal-700 relative top-1">person</span>
-            </div>
+            <ProfileDropdown />
 
             {/* Mobile menu button (Hidden - Replaced by Bottom Nav) */}
             <button

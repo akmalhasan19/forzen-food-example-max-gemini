@@ -1,11 +1,14 @@
 "use client";
 
+import { useMemo } from "react";
 import { Separator } from "@/components/ui/separator";
 import { useCartStore } from "@/store/cart-store";
 import { useCheckoutStore } from "@/store/checkout-store";
 import { formatPrice } from "@/lib/utils/currency";
 import { formatWeight } from "@/lib/utils/weight";
 import { SHIPPING_RATES } from "@/lib/constants/shipping";
+import { SELLER_LOCATION } from "@/lib/constants/seller";
+import { haversineDistanceKm } from "@/lib/utils/distance";
 import { estimateMeltingMinutes, coldChainStatus } from "@/lib/utils/cold-chain";
 
 export function OrderReview() {
@@ -13,7 +16,18 @@ export function OrderReview() {
   const { shippingMethod, deliverySlot, deliveryAddress } = useCheckoutStore();
 
   const rate = SHIPPING_RATES[shippingMethod];
-  const shipping = shippingCents(shippingMethod);
+
+  const distanceKm = useMemo(() => {
+    if (deliveryAddress.lat != null && deliveryAddress.lng != null) {
+      return haversineDistanceKm(
+        SELLER_LOCATION.lat, SELLER_LOCATION.lng,
+        deliveryAddress.lat, deliveryAddress.lng
+      );
+    }
+    return 0;
+  }, [deliveryAddress.lat, deliveryAddress.lng]);
+
+  const shipping = shippingCents(shippingMethod, distanceKm);
   const total = subtotalCents() + shipping;
   const meltingEst = estimateMeltingMinutes(shippingMethod, "frozen");
   const chainStatus = coldChainStatus(meltingEst);
@@ -90,8 +104,8 @@ export function OrderReview() {
               chainStatus.variant === "safe"
                 ? "text-green-600"
                 : chainStatus.variant === "warning"
-                ? "text-amber-600"
-                : "text-red-600"
+                  ? "text-amber-600"
+                  : "text-red-600"
             }
           >
             {chainStatus.label}

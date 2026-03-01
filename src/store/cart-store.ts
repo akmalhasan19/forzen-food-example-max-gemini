@@ -72,9 +72,9 @@ export const useCartStore = create<CartState>()(
         return get().items.reduce((sum, item) => sum + item.qty, 0);
       },
 
-      shippingCents: (method: ShippingMethod) => {
+      shippingCents: (method: ShippingMethod, distanceKm: number = 0) => {
         const totalWeight = get().totalWeightGrams();
-        return calculateShippingCents(totalWeight, method);
+        return calculateShippingCents(totalWeight, method, distanceKm);
       },
     }),
     {

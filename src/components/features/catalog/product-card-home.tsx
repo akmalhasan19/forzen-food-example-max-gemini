@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Plus, Minus } from "lucide-react";
 import { useCartStore } from "@/store/cart-store";
 import { formatPrice } from "@/lib/utils/currency";
+import { toast } from "sonner";
 import { formatWeight } from "@/lib/utils/weight";
 import { TEMPERATURE_OPTIONS } from "@/lib/constants/filters";
 import type { Product } from "@/types/domain";
@@ -80,16 +81,25 @@ export function ProductCardHome({ product }: ProductCardHomeProps) {
           <div className="w-full h-full flex items-center justify-between px-6 text-foreground z-[2]">
             <button
               aria-label="Kurangi"
-              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/10 transition-colors"
-              onClick={() => updateQty(product.id, qty - 1)}
+              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/10 transition-colors cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                updateQty(product.id, qty - 1);
+              }}
             >
               <Minus className="h-5 w-5" />
             </button>
             <span className="text-xl font-bold">{qty}</span>
             <button
               aria-label="Tambah"
-              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/10 transition-colors"
-              onClick={() => addItem(product)}
+              className="w-8 h-8 rounded-full flex items-center justify-center hover:bg-black/10 transition-colors cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                addItem(product);
+                toast.success("Berhasil ditambahkan ke keranjang");
+              }}
               disabled={product.inventoryAvailable <= qty}
             >
               <Plus className="h-5 w-5" />
@@ -99,8 +109,13 @@ export function ProductCardHome({ product }: ProductCardHomeProps) {
           /* Add to cart button */
           <button
             aria-label="Tambah"
-            className="w-full h-full flex items-center justify-center text-foreground transition-colors duration-200 z-[2] disabled:opacity-40"
-            onClick={() => addItem(product)}
+            className="w-full h-full flex items-center justify-center text-foreground transition-colors duration-200 z-[2] disabled:opacity-40 cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              addItem(product);
+              toast.success("Berhasil ditambahkan ke keranjang");
+            }}
             disabled={product.inventoryAvailable <= 0}
           >
             <Plus className="h-7 w-7" strokeWidth={1.5} />

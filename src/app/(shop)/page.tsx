@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { HeroImageCarousel } from "@/components/features/hero/hero-image-carousel";
 import { ScrollRevealGroup } from "@/components/shared/animate-on-scroll";
 import { CustomerRatingDropdown } from "@/components/features/hero/customer-rating-dropdown";
+import { KoleksiProductGrid } from "@/components/features/catalog/koleksi-product-grid";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -10,44 +11,6 @@ export const metadata: Metadata = {
     "Belanja makanan beku berkualitas premium. Dari daging segar, seafood pilihan, hingga sayuran beku — semua diantar dengan rantai dingin.",
 };
 
-const products = [
-  {
-    brand: "Seafood",
-    name: "Salmon Fillet",
-    price: "Rp89.000",
-    rating: "4.9",
-    image:
-      "https://images.unsplash.com/photo-1574781330855-d0db8cc6a79c?w=600&h=400&fit=crop&q=80",
-    highlight: true,
-  },
-  {
-    brand: "Daging Premium",
-    name: "Wagyu Slice",
-    price: "Rp125.000",
-    rating: "5.0",
-    image:
-      "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=600&h=400&fit=crop&q=80",
-    highlight: false,
-  },
-  {
-    brand: "Olahan",
-    name: "Dimsum Premium",
-    price: "Rp45.000",
-    rating: "4.8",
-    image:
-      "https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=600&h=400&fit=crop&q=80",
-    highlight: false,
-  },
-  {
-    brand: "Seafood",
-    name: "Udang Vaname",
-    price: "Rp72.000",
-    rating: "4.7",
-    image:
-      "https://images.unsplash.com/photo-1565680018434-b513d5e5fd47?w=600&h=400&fit=crop&q=80",
-    highlight: false,
-  },
-];
 
 export default function HomePage() {
   return (
@@ -151,59 +114,8 @@ export default function HomePage() {
         </ScrollRevealGroup>
 
         {/* Product Cards */}
-        <ScrollRevealGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {products.map((product) => (
-            <div
-              key={product.name}
-              className="reveal-slide-up group bg-white dark:bg-zinc-800 rounded-3xl p-6 border border-gray-100 dark:border-gray-800 hover:shadow-xl dark:hover:shadow-2xl dark:hover:shadow-black/50 transition-all duration-300 flex flex-col relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 p-5 z-20">
-                <button className="w-10 h-10 rounded-full bg-white/80 dark:bg-black/50 backdrop-blur-sm flex items-center justify-center hover:bg-red-50 dark:hover:bg-red-900/50 text-gray-400 hover:text-red-500 transition-colors">
-                  <span className="material-icons-round text-xl">
-                    favorite_border
-                  </span>
-                </button>
-              </div>
-              <div className="h-48 w-full rounded-2xl mb-4 relative overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  alt={product.name}
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition duration-500"
-                  src={product.image}
-                />
-              </div>
-              <div className="flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <p className="text-xs text-gray-400 font-medium uppercase tracking-wider mb-1">
-                      {product.brand}
-                    </p>
-                    <h4 className="font-display font-bold text-xl text-gray-900 dark:text-white leading-tight">
-                      {product.name}
-                    </h4>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 mb-4">
-                  <span className="material-icons-round text-yellow-400 text-sm">
-                    star
-                  </span>
-                  <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                    {product.rating}
-                  </span>
-                </div>
-                <div className="mt-auto flex justify-between items-center">
-                  <span className="font-display font-bold text-2xl text-gray-900 dark:text-white">
-                    {product.price}
-                  </span>
-                  <button
-                    className="w-12 h-12 rounded-2xl bg-[#93C572] text-white hover:bg-green-700 shadow-lg hover:shadow-green-700/50 dark:hover:shadow-none flex items-center justify-center transition-all duration-300 transform active:scale-95"
-                  >
-                    <span className="material-icons-round">add</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+        <ScrollRevealGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" forceReveal>
+          <KoleksiProductGrid />
         </ScrollRevealGroup>
 
         <div className="mt-12 flex justify-center">

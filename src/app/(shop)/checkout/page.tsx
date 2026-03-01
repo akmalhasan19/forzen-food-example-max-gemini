@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,6 +16,8 @@ import { useCartStore } from "@/store/cart-store";
 import { useCheckoutStore } from "@/store/checkout-store";
 import { getOrderService } from "@/services/order.service";
 import { SHIPPING_RATES } from "@/lib/constants/shipping";
+import { SELLER_LOCATION } from "@/lib/constants/seller";
+import { haversineDistanceKm } from "@/lib/utils/distance";
 import { formatPrice } from "@/lib/utils/currency";
 import type { ShippingMethod } from "@/types/domain";
 import { toast } from "sonner";
@@ -35,6 +37,24 @@ export default function CheckoutPage() {
   } = useCheckoutStore();
   const [submitting, setSubmitting] = useState(false);
 
+  // Calculate distance between buyer and seller
+  const distanceKm = useMemo(() => {
+    if (deliveryAddress.lat != null && deliveryAddress.lng != null) {
+      return haversineDistanceKm(
+        SELLER_LOCATION.lat,
+        SELLER_LOCATION.lng,
+        deliveryAddress.lat,
+        deliveryAddress.lng
+      );
+    }
+    return 0;
+  }, [deliveryAddress.lat, deliveryAddress.lng]);
+
+  // Scroll to the top of the page whenever the checkout step changes.
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [step]);
+
   if (items.length === 0) {
     return (
       <main className="mx-auto max-w-3xl px-4 py-16 text-center">
@@ -48,15 +68,19 @@ export default function CheckoutPage() {
     );
   }
 
-  const canProceedToStep2 = !!shippingMethod;
-  const canProceedToStep3 =
-    !!deliverySlot &&
+  // Step 1 validation: address + shipping method
+  const addressValid =
     deliveryAddress.fullName.trim() !== "" &&
     deliveryAddress.street.trim() !== "" &&
     deliveryAddress.city.trim() !== "" &&
     deliveryAddress.state.trim() !== "" &&
     deliveryAddress.zip.trim() !== "" &&
     deliveryAddress.phone.trim() !== "";
+
+  const canProceedToStep2 = !!shippingMethod && addressValid;
+
+  // Step 2 validation: delivery slot only
+  const canProceedToStep3 = !!deliverySlot;
 
   const handlePlaceOrder = async () => {
     if (!deliverySlot) return;
@@ -69,7 +93,7 @@ export default function CheckoutPage() {
         deliverySlot,
         deliveryAddress,
         subtotalCents: subtotalCents(),
-        shippingCents: shippingCents(shippingMethod),
+        shippingCents: shippingCents(shippingMethod, distanceKm),
       });
       clearCart();
       resetCheckout();
@@ -89,9 +113,30 @@ export default function CheckoutPage() {
       <CheckoutStepper currentStep={step} />
 
       <div className="bg-white rounded-xl border p-6">
-        {/* Step 1: Shipping Method */}
+        {/* Step 1: Address + Map + Shipping Method */}
         {step === 1 && (
           <div className="space-y-6">
+            {/* Address Form */}
+            <AddressForm />
+
+            <MapPicker
+              lat={deliveryAddress.lat}
+              lng={deliveryAddress.lng}
+              onSelect={(lat, lng) => setDeliveryAddress({ lat, lng })}
+            />
+
+            {/* Distance Info */}
+            {distanceKm > 0 && (
+              <div className="p-3 bg-blue-50 rounded-lg border border-blue-200 text-sm">
+                <p className="font-medium text-blue-800">
+                  📍 Jarak dari {SELLER_LOCATION.label}: <strong>{distanceKm.toFixed(1)} km</strong>
+                </p>
+              </div>
+            )}
+
+            <Separator />
+
+            {/* Shipping Method Selection */}
             <h2 className="text-lg font-semibold text-slate-900">Pilih Metode Pengiriman</h2>
             <RadioGroup
               value={shippingMethod}
@@ -100,15 +145,14 @@ export default function CheckoutPage() {
             >
               {(Object.keys(SHIPPING_RATES) as ShippingMethod[]).map((method) => {
                 const rate = SHIPPING_RATES[method];
-                const cost = shippingCents(method);
+                const cost = shippingCents(method, distanceKm);
                 return (
                   <div
                     key={method}
-                    className={`flex items-start gap-3 rounded-lg border p-4 cursor-pointer transition-colors ${
-                      shippingMethod === method
-                        ? "border-teal-600 bg-teal-50"
-                        : "hover:border-slate-300"
-                    }`}
+                    className={`flex items-start gap-3 rounded-lg border p-4 cursor-pointer transition-colors ${shippingMethod === method
+                      ? "border-teal-600 bg-teal-50"
+                      : "hover:border-slate-300"
+                      }`}
                     onClick={() => setShippingMethod(method)}
                   >
                     <RadioGroupItem value={method} id={method} className="mt-0.5" />
@@ -118,6 +162,11 @@ export default function CheckoutPage() {
                       </Label>
                       <p className="text-xs text-slate-500 mt-0.5">{rate.description}</p>
                       <p className="text-xs text-slate-500">{rate.estimatedDays}</p>
+                      {distanceKm > 0 && (
+                        <p className="text-xs text-teal-600 mt-0.5">
+                          Termasuk biaya jarak {distanceKm.toFixed(1)} km
+                        </p>
+                      )}
                     </div>
                     <span className="font-semibold text-teal-700">{formatPrice(cost)}</span>
                   </div>
@@ -138,20 +187,10 @@ export default function CheckoutPage() {
           </div>
         )}
 
-        {/* Step 2: Delivery Slot + Address */}
+        {/* Step 2: Delivery Slot Only */}
         {step === 2 && (
           <div className="space-y-8">
             <DeliverySlotPicker />
-
-            <Separator />
-
-            <AddressForm />
-
-            <MapPicker
-              lat={deliveryAddress.lat}
-              lng={deliveryAddress.lng}
-              onSelect={(lat, lng) => setDeliveryAddress({ lat, lng })}
-            />
 
             <div className="flex justify-between">
               <Button variant="outline" onClick={() => setStep(1)}>

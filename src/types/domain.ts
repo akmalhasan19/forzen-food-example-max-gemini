@@ -65,7 +65,7 @@ export interface CartState {
   subtotalCents: () => number;
   totalWeightGrams: () => number;
   totalItems: () => number;
-  shippingCents: (method: ShippingMethod) => number;
+  shippingCents: (method: ShippingMethod, distanceKm?: number) => number;
 }
 
 // ─── Catalog Filters ─────────────────────────────────────
