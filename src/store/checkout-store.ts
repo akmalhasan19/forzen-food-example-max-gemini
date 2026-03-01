@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { CheckoutState, CheckoutStep, ShippingMethod, DeliverySlot, DeliveryAddress } from "@/types/domain";
+import type { CheckoutState, CheckoutStep, ShippingMethod, DeliverySlot, DeliveryAddress, PaymentMethod } from "@/types/domain";
 
 const defaultAddress: DeliveryAddress = {
   fullName: "",
@@ -13,12 +13,15 @@ const defaultAddress: DeliveryAddress = {
 export const useCheckoutStore = create<CheckoutState>()((set) => ({
   step: 1 as CheckoutStep,
   shippingMethod: "standard" as ShippingMethod,
+  paymentMethod: null as PaymentMethod | null,
   deliverySlot: null,
   deliveryAddress: { ...defaultAddress },
 
   setStep: (step: CheckoutStep) => set({ step }),
 
   setShippingMethod: (method: ShippingMethod) => set({ shippingMethod: method }),
+
+  setPaymentMethod: (method: PaymentMethod | null) => set({ paymentMethod: method }),
 
   setDeliverySlot: (slot: DeliverySlot | null) => set({ deliverySlot: slot }),
 
@@ -32,6 +35,7 @@ export const useCheckoutStore = create<CheckoutState>()((set) => ({
     set({
       step: 1,
       shippingMethod: "standard",
+      paymentMethod: null,
       deliverySlot: null,
       deliveryAddress: { ...defaultAddress },
     }),

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
 import { useCartStore } from "@/store/cart-store";
 import { useAuthStore } from "@/store/auth-store";
@@ -60,9 +60,15 @@ export function AppHeader() {
                 <Link
                   key={link.label}
                   href={link.href}
+                  onClick={(e) => {
+                    if (link.href === pathname) {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
                   className={`relative font-medium transition-colors ${isActive
-                      ? "text-[#93C572] dark:text-[#93C572]"
-                      : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                    ? "text-[#93C572] dark:text-[#93C572]"
+                    : "text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
                     }`}
                 >
                   <span className="relative z-10">{link.label}</span>

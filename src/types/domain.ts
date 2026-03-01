@@ -180,15 +180,19 @@ export interface UiState {
 }
 
 // ─── Checkout State ──────────────────────────────────────
-export type CheckoutStep = 1 | 2 | 3;
+export type CheckoutStep = 1 | 2 | 3 | 4;
+
+export type PaymentMethod = "bca_va" | "mandiri_va" | "bni_va" | "bri_va" | "gopay" | "qris" | "credit_card";
 
 export interface CheckoutState {
   step: CheckoutStep;
   shippingMethod: ShippingMethod;
+  paymentMethod: PaymentMethod | null;
   deliverySlot: DeliverySlot | null;
   deliveryAddress: DeliveryAddress;
   setStep: (step: CheckoutStep) => void;
   setShippingMethod: (method: ShippingMethod) => void;
+  setPaymentMethod: (method: PaymentMethod | null) => void;
   setDeliverySlot: (slot: DeliverySlot | null) => void;
   setDeliveryAddress: (address: Partial<DeliveryAddress>) => void;
   reset: () => void;

@@ -12,8 +12,11 @@ import { DeliverySlotPicker } from "@/components/features/checkout/delivery-slot
 import { AddressForm } from "@/components/features/checkout/address-form";
 import { MapPicker } from "@/components/features/checkout/map-picker";
 import { OrderReview } from "@/components/features/checkout/order-review";
+import { PaymentStep } from "@/components/features/checkout/payment-step";
+import { MockQrisPayment } from "@/components/features/checkout/mock-qris-payment";
 import { useCartStore } from "@/store/cart-store";
 import { useCheckoutStore } from "@/store/checkout-store";
+import { useAuthStore } from "@/store/auth-store";
 import { getOrderService } from "@/services/order.service";
 import { SHIPPING_RATES } from "@/lib/constants/shipping";
 import { SELLER_LOCATION } from "@/lib/constants/seller";
@@ -25,6 +28,7 @@ import { toast } from "sonner";
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, subtotalCents, shippingCents, clearCart } = useCartStore();
+  const { isAuthenticated } = useAuthStore();
   const {
     step,
     setStep,
@@ -32,10 +36,13 @@ export default function CheckoutPage() {
     setShippingMethod,
     deliverySlot,
     deliveryAddress,
+    paymentMethod,
+    setPaymentMethod,
     setDeliveryAddress,
     reset: resetCheckout,
   } = useCheckoutStore();
   const [submitting, setSubmitting] = useState(false);
+  const [showMockQris, setShowMockQris] = useState(false);
 
   // Calculate distance between buyer and seller
   const distanceKm = useMemo(() => {
@@ -82,8 +89,7 @@ export default function CheckoutPage() {
   // Step 2 validation: delivery slot only
   const canProceedToStep3 = !!deliverySlot;
 
-  const handlePlaceOrder = async () => {
-    if (!deliverySlot) return;
+  const executeOrderCheckout = async (redirectPath: string) => {
     setSubmitting(true);
     try {
       const orderService = getOrderService();
@@ -92,18 +98,35 @@ export default function CheckoutPage() {
         shippingMethod,
         deliverySlot,
         deliveryAddress,
+        paymentMethod: paymentMethod!,
         subtotalCents: subtotalCents(),
         shippingCents: shippingCents(shippingMethod, distanceKm),
-      });
+      } as any); // temporary cast if we need to update domain order types later
       clearCart();
       resetCheckout();
       toast.success("Pesanan berhasil dibuat!");
-      router.push("/orders");
+      router.push(redirectPath);
     } catch {
       toast.error("Gagal membuat pesanan. Silakan coba lagi.");
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const handlePlaceOrder = async () => {
+    if (!deliverySlot || !paymentMethod) {
+      if (!paymentMethod) {
+        toast.error("Silakan pilih metode pembayaran");
+      }
+      return;
+    }
+
+    if (paymentMethod === "qris") {
+      setShowMockQris(true);
+      return;
+    }
+
+    await executeOrderCheckout(isAuthenticated ? "/orders" : "/");
   };
 
   return (
@@ -220,20 +243,53 @@ export default function CheckoutPage() {
                 Kembali
               </Button>
               <Button
-                onClick={handlePlaceOrder}
-                disabled={submitting}
+                onClick={() => setStep(4)}
                 className="bg-teal-600 hover:bg-teal-700"
               >
-                {submitting ? (
-                  "Memproses Pesanan..."
-                ) : (
-                  <>
-                    <Check className="h-4 w-4 mr-1" />
-                    Buat Pesanan
-                  </>
-                )}
+                Buat Pesanan
+                <ArrowRight className="h-4 w-4 ml-1" />
               </Button>
             </div>
+          </div>
+        )}
+
+        {/* Step 4: Payment */}
+        {step === 4 && (
+          <div className="space-y-6">
+            {showMockQris ? (
+              <MockQrisPayment
+                totalAmount={(subtotalCents() + shippingCents(shippingMethod, distanceKm))}
+                isAuthenticated={isAuthenticated}
+                onSuccessAcknowledge={(redirectPath) => {
+                  executeOrderCheckout(redirectPath);
+                }}
+              />
+            ) : (
+              <>
+                <PaymentStep />
+
+                <div className="flex justify-between">
+                  <Button variant="outline" onClick={() => setStep(3)}>
+                    <ArrowLeft className="h-4 w-4 mr-1" />
+                    Kembali
+                  </Button>
+                  <Button
+                    onClick={handlePlaceOrder}
+                    disabled={submitting || !paymentMethod}
+                    className="bg-teal-600 hover:bg-teal-700"
+                  >
+                    {submitting ? (
+                      "Memproses Pembayaran..."
+                    ) : (
+                      <>
+                        <Check className="h-4 w-4 mr-1" />
+                        Konfirmasi & Bayar
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>

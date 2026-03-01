@@ -114,14 +114,17 @@ export default function HomePage() {
         </ScrollRevealGroup>
 
         {/* Product Cards */}
-        <ScrollRevealGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" forceReveal>
+        <ScrollRevealGroup className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <KoleksiProductGrid />
         </ScrollRevealGroup>
 
         <div className="mt-12 flex justify-center">
-          <button className="px-8 py-3 rounded-2xl bg-transparent border-2 border-black dark:border-white text-black dark:text-white font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300">
+          <Link
+            href="/products"
+            className="px-8 py-3 rounded-2xl bg-transparent border-2 border-black dark:border-white text-black dark:text-white font-semibold hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors duration-300"
+          >
             Lihat Semua Produk
-          </button>
+          </Link>
         </div>
       </section>
 

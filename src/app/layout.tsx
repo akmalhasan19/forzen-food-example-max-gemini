@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ViewTransitions } from "next-view-transitions";
+import NextTopLoader from "nextjs-toploader";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { MobileBottomNav } from "@/components/layout/mobile-bottom-nav";
@@ -48,6 +49,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <NextTopLoader color="#93C572" showSpinner={false} shadow="0 0 10px #93C572,0 0 5px #93C572" />
           <QueryProvider>
             {children}
             <Toaster />
