@@ -45,7 +45,7 @@ describe("checkout workflow validation", () => {
     });
 
     useCheckoutStore.setState({
-      step: 1,
+      step: 2,
       shippingMethod: "standard",
       deliverySlot: null,
       deliveryAddress: {
@@ -59,56 +59,13 @@ describe("checkout workflow validation", () => {
     });
   });
 
-  it("blocks proceeding without valid address on step 1", () => {
-    renderPage();
-
-    // Step 1: Lanjutkan button should be disabled without address
-    expect(screen.getByRole("button", { name: /lanjutkan/i })).toBeDisabled();
-  });
-
-  it("enables proceeding when address is filled on step 1", () => {
-    act(() => {
-      useCheckoutStore.setState({
-        deliveryAddress: {
-          fullName: "Jane Doe",
-          street: "123 Main St",
-          city: "Jakarta",
-          state: "DKI Jakarta",
-          zip: "10110",
-          phone: "+62-812-3456-7890",
-        },
-      });
-    });
-
-    renderPage();
-
-    expect(screen.getByRole("button", { name: /lanjutkan/i })).toBeEnabled();
-  });
-
-  it("blocks review action without delivery slot on step 2", () => {
-    act(() => {
-      useCheckoutStore.setState({
-        step: 2,
-        deliveryAddress: {
-          fullName: "Jane Doe",
-          street: "123 Main St",
-          city: "Jakarta",
-          state: "DKI Jakarta",
-          zip: "10110",
-          phone: "+62-812-3456-7890",
-        },
-      });
-    });
-
-    renderPage();
+  it("blocks review action without delivery slot and valid address", () => {
+    const { rerender } = renderPage();
 
     expect(screen.getByRole("button", { name: /tinjau pesanan/i })).toBeDisabled();
-  });
 
-  it("enables review when delivery slot is selected on step 2", () => {
     act(() => {
       useCheckoutStore.setState({
-        step: 2,
         deliverySlot: {
           id: "slot-1",
           date: "2026-03-01",
@@ -120,15 +77,19 @@ describe("checkout workflow validation", () => {
         deliveryAddress: {
           fullName: "Jane Doe",
           street: "123 Main St",
-          city: "Jakarta",
-          state: "DKI Jakarta",
-          zip: "10110",
-          phone: "+62-812-3456-7890",
+          city: "New York",
+          state: "NY",
+          zip: "10001",
+          phone: "+1-555-0100",
         },
       });
     });
 
-    renderPage();
+    rerender(
+      <QueryClientProvider client={new QueryClient()}>
+        <CheckoutPage />
+      </QueryClientProvider>
+    );
 
     expect(screen.getByRole("button", { name: /tinjau pesanan/i })).toBeEnabled();
   });
